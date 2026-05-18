@@ -184,23 +184,83 @@
     max-width: 380px;
     animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
-  .spinner-ring {
-    width: 80px; height: 80px;
-    border: 3px solid rgba(201,168,76,0.2);
-    border-top-color: var(--gold);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+
+  /* Waiting animation */
+  .waiting-ring-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
     margin: 0 auto 2rem;
   }
+  .spinner-ring {
+    width: 100px; height: 100px;
+    border: 3px solid rgba(201,168,76,0.15);
+    border-top-color: var(--gold);
+    border-right-color: rgba(201,168,76,0.5);
+    border-radius: 50%;
+    animation: spin 1.4s cubic-bezier(0.68, 0, 0.32, 1) infinite;
+    position: absolute;
+    inset: 0;
+  }
+  .waiting-ring-wrapper .ring-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    animation: pulse-icon 2s ease-in-out infinite;
+  }
+  @keyframes pulse-icon {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 1; }
+  }
   @keyframes spin { to { transform: rotate(360deg); } }
+
   #screen-redirect h2 {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     color: var(--gold-light);
     margin-bottom: 1rem;
   }
-  #screen-redirect p { color: rgba(253,246,227,0.6); line-height: 1.6; margin-bottom: 2rem; }
-  #screen-redirect .google-badge {
+  #screen-redirect .status-msg {
+    color: rgba(253,246,227,0.6);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  /* Status indicator */
+  .status-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 50px;
+    padding: 0.5rem 1.2rem;
+    font-size: 0.8rem;
+    color: rgba(253,246,227,0.5);
+    margin-bottom: 2rem;
+    animation: breathe 2.5s ease-in-out infinite;
+  }
+  .status-dot {
+    width: 7px; height: 7px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: blink 1.2s ease-in-out infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.7); }
+  }
+  @keyframes breathe {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+    50% { box-shadow: 0 0 0 6px rgba(201,168,76,0.05); }
+  }
+
+  .google-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -212,6 +272,12 @@
     font-size: 0.9rem;
     margin-bottom: 2rem;
     cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: none;
+  }
+  .google-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(255,255,255,0.15);
   }
   .google-g {
     font-size: 1.1rem;
@@ -222,10 +288,66 @@
   }
   .manual-link {
     font-size: 0.82rem;
-    color: rgba(253,246,227,0.5);
+    color: rgba(253,246,227,0.4);
     margin-top: 1rem;
   }
-  .manual-link a { color: var(--gold); text-decoration: underline; cursor: pointer; }
+  .manual-link a {
+    color: var(--gold);
+    text-decoration: underline;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .manual-link a:hover { opacity: 0.8; }
+
+  /* ─── SCREEN 2b: RETOUR DÉTECTÉ ─── */
+  #screen-returning .content {
+    max-width: 380px;
+    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  #screen-returning h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--gold-light);
+    margin-bottom: 0.75rem;
+  }
+  #screen-returning p {
+    color: rgba(253,246,227,0.6);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
+  .return-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1.5rem;
+    animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  @keyframes bounceIn {
+    from { transform: scale(0) rotate(-20deg); opacity: 0; }
+    to { transform: scale(1) rotate(0deg); opacity: 1; }
+  }
+  /* progress bar auto-redirect */
+  .auto-redirect-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(201,168,76,0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+  .auto-redirect-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+    border-radius: 4px;
+    width: 0%;
+    transition: width linear;
+  }
+  .auto-redirect-label {
+    font-size: 0.78rem;
+    color: rgba(253,246,227,0.35);
+    margin-bottom: 2rem;
+    margin-top: -1rem;
+  }
 
   /* ─── SCREEN 3: ROUE ─── */
   #screen-wheel { padding: 1.5rem; }
@@ -373,7 +495,6 @@
     color: var(--gold);
     letter-spacing: 0.05em;
   }
-  /* ─── previous prize recap ─── */
   .prev-prize {
     background: rgba(201,168,76,0.06);
     border: 1px dashed rgba(201,168,76,0.3);
@@ -510,18 +631,44 @@
 <!-- SCREEN 2: REDIRECTION GOOGLE -->
 <div class="screen" id="screen-redirect">
   <div class="content">
-    <div class="spinner-ring"></div>
-    <h2>Merci pour votre avis !</h2>
-    <p>Vous allez être redirigé vers Google pour laisser votre avis. Une fois votre avis déposé, revenez ici pour faire tourner la roue !</p>
+    <div class="waiting-ring-wrapper">
+      <div class="spinner-ring"></div>
+      <div class="ring-icon">⭐</div>
+    </div>
+    <h2>Google s'est ouvert !</h2>
+    <p class="status-msg">Laissez votre avis, puis revenez ici.<br>La roue se lancera automatiquement dès votre retour !</p>
 
-    <div class="google-badge" onclick="openGoogleAndContinue()">
-      <span class="google-g">G</span>
-      Ouvrir Google Avis
+    <div class="status-indicator">
+      <div class="status-dot"></div>
+      En attente de votre retour…
     </div>
 
+    <button class="google-badge" onclick="openGoogleAndWait()">
+      <span class="google-g">G</span>
+      Ouvrir Google Avis
+    </button>
+
     <p class="manual-link">
-      Lien déjà ouvert ? <a onclick="showWheel()">Accéder à la roue →</a>
+      Déjà de retour ? <a onclick="showWheel()">Accéder à la roue →</a>
     </p>
+  </div>
+</div>
+
+<!-- SCREEN 2b: RETOUR DÉTECTÉ -->
+<div class="screen" id="screen-returning">
+  <div class="content">
+    <span class="return-icon">🎡</span>
+    <h2>Bienvenue de retour !</h2>
+    <p>Merci pour votre avis ⭐<br>Vous êtes sur le point de découvrir votre récompense…</p>
+
+    <div class="auto-redirect-bar">
+      <div class="auto-redirect-fill" id="autoFill"></div>
+    </div>
+    <p class="auto-redirect-label">Redirection vers la roue en cours…</p>
+
+    <button class="btn-primary" onclick="showWheel()" style="max-width:280px; margin:0 auto;">
+      🎡 Tourner la roue maintenant !
+    </button>
   </div>
 </div>
 
@@ -577,7 +724,25 @@
   </div>
 </div>
 
-<!-- MODAL: RÉSULTAT -->
+<!-- MODAL: PERDU -->
+<div class="modal-overlay" id="lostModal">
+  <div class="modal">
+    <span class="confetti-emoji" style="animation:none;">😔</span>
+    <h3 style="color:rgba(253,246,227,0.5); margin-bottom:0.75rem;">Pas de chance cette fois…</h3>
+    <p class="prize-desc" style="margin-bottom:1.5rem;">
+      Merci pour votre avis Google ⭐<br>
+      Revenez demain pour retenter votre chance !
+    </p>
+    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:0.9rem 1.2rem; margin-bottom:1.8rem; font-size:0.82rem; color:rgba(253,246,227,0.35); line-height:1.6;">
+      Une nouvelle tentative sera disponible<br>dans <strong style="color:rgba(253,246,227,0.6);">24 heures</strong>.
+    </div>
+    <button class="btn-primary" onclick="closeLostModal()" style="background:linear-gradient(135deg,#3a3a3a,#1a1a1a); box-shadow:none; color:rgba(253,246,227,0.7);">
+      Fermer
+    </button>
+  </div>
+</div>
+
+<!-- MODAL: GAGNÉ -->
 <div class="modal-overlay" id="prizeModal">
   <div class="modal">
     <span class="confetti-emoji" id="prizeEmoji">🎉</span>
@@ -599,19 +764,25 @@
 <script>
 // ─── CONFIG ───
 const STORAGE_KEY = 'roue_saveurs_spin';
-const COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 heures
+const COOLDOWN_MS = 24 * 60 * 60 * 1000;
 const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJpSWiLADvBUgRoMKiZQL9a5o";
 
 const prizes = [
-  { label: "Dessert\nOffert",   emoji: "🍰", color: "#8B1A1A",  desc: "Un dessert de votre choix offert par la maison !",         code: "DESSERT"  },
-  { label: "Boisson\nOfferte",  emoji: "🍷", color: "#1A2E5C",  desc: "Une boisson (soft ou verre de vin) offerte !",              code: "BOISSON"  },
-  { label: "Café\nOffert",      emoji: "☕", color: "#3D2800",  desc: "Un café ou thé offert en fin de repas.",                   code: "CAFE"     },
-  { label: "Plat\nOffert",      emoji: "🍽", color: "#1A5C2A",  desc: "Un plat principal offert lors de votre prochaine visite.", code: "PLAT"     },
-  { label: "-10%\nAddition",    emoji: "💫", color: "#5C1A4A",  desc: "10% de réduction sur votre addition de ce soir.",          code: "REMISE10" },
-  { label: "Apéritif\nMaison",  emoji: "🥂", color: "#4A3000",  desc: "Un apéritif maison offert pour commencer.",                code: "APERITIF" },
-  { label: "-20%\nAddition",    emoji: "🎉", color: "#C45000",  desc: "20% de réduction sur votre addition — c'est votre jour de chance !", code: "REMISE20" },
-  { label: "Entrée\nOfferte",   emoji: "🥗", color: "#0A4A3C",  desc: "Une entrée au choix offerte ce soir.",                    code: "ENTREE"   },
+  { label: "Dessert\nOffert",   emoji: "🍰", color: "#8B1A1A",  desc: "Un dessert de votre choix offert par la maison !",         code: "DESSERT",  lost: false },
+  { label: "Boisson\nOfferte",  emoji: "🍷", color: "#1A2E5C",  desc: "Une boisson (soft ou verre de vin) offerte !",              code: "BOISSON",  lost: false },
+  { label: "Pas\nde chance",    emoji: "😔", color: "#2A2A2A",  desc: "",                                                          code: "",         lost: true  },
+  { label: "Café\nOffert",      emoji: "☕", color: "#3D2800",  desc: "Un café ou thé offert en fin de repas.",                   code: "CAFE",     lost: false },
+  { label: "Plat\nOffert",      emoji: "🍽", color: "#1A5C2A",  desc: "Un plat principal offert lors de votre prochaine visite.", code: "PLAT",     lost: false },
+  { label: "-10%\nAddition",    emoji: "💫", color: "#5C1A4A",  desc: "10% de réduction sur votre addition de ce soir.",          code: "REMISE10", lost: false },
+  { label: "Pas\nde chance",    emoji: "😔", color: "#2A2A2A",  desc: "",                                                          code: "",         lost: true  },
+  { label: "Apéritif\nMaison",  emoji: "🥂", color: "#4A3000",  desc: "Un apéritif maison offert pour commencer.",                code: "APERITIF", lost: false },
+  { label: "-20%\nAddition",    emoji: "🎉", color: "#C45000",  desc: "20% de réduction sur votre addition — c'est votre jour de chance !", code: "REMISE20", lost: false },
+  { label: "Entrée\nOfferte",   emoji: "🥗", color: "#0A4A3C",  desc: "Une entrée au choix offerte ce soir.",                    code: "ENTREE",   lost: false },
 ];
+
+// ─── STATE ───
+let waitingForReturn = false;   // true après ouverture de Google
+let autoRedirectTimer = null;
 
 // ─── STORAGE HELPERS ───
 function getSpin() {
@@ -642,14 +813,38 @@ function goToReview() {
   showScreen('screen-redirect');
 }
 
-function openGoogleAndContinue() {
+// ─── OUVERTURE GOOGLE + ÉCOUTE DU RETOUR ───
+function openGoogleAndWait() {
   window.open(GOOGLE_REVIEW_URL, '_blank');
-  setTimeout(() => {
-    document.querySelector('#screen-redirect .manual-link').style.display = 'block';
-  }, 3000);
+  waitingForReturn = true;
+}
+
+// Détection du retour sur l'onglet via visibilitychange
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible' && waitingForReturn) {
+    waitingForReturn = false;
+    if (hasPlayedToday()) { showUsedScreen(); return; }
+    showReturningScreen();
+  }
+});
+
+// ─── ÉCRAN INTERMÉDIAIRE : RETOUR DÉTECTÉ ───
+function showReturningScreen() {
+  showScreen('screen-returning');
+  const DELAY = 2500; // ms avant redirection auto
+  const fill = document.getElementById('autoFill');
+  fill.style.transition = `width ${DELAY}ms linear`;
+  // Force reflow pour que la transition parte de 0
+  fill.getBoundingClientRect();
+  fill.style.width = '100%';
+
+  autoRedirectTimer = setTimeout(() => {
+    showWheel();
+  }, DELAY);
 }
 
 function showWheel() {
+  if (autoRedirectTimer) { clearTimeout(autoRedirectTimer); autoRedirectTimer = null; }
   if (hasPlayedToday()) { showUsedScreen(); return; }
   showScreen('screen-wheel');
   drawWheel();
@@ -663,10 +858,12 @@ function skipToWheel() {
 function showUsedScreen() {
   showScreen('screen-used');
   const spin = getSpin();
-  if (spin) {
+  if (spin && !spin.lost) {
     document.getElementById('prev-prize-box').style.display = 'block';
     document.getElementById('prev-prize-label').textContent = spin.prizeLabel + ' ' + spin.prizeEmoji;
     document.getElementById('prev-prize-code').textContent = spin.prizeCode;
+  } else {
+    document.getElementById('prev-prize-box').style.display = 'none';
   }
   startCountdown();
 }
@@ -691,13 +888,10 @@ function startCountdown() {
   countdownInterval = setInterval(update, 1000);
 }
 
-// ─── INIT: check state on load ───
+// ─── INIT ───
 window.addEventListener('DOMContentLoaded', () => {
   createParticles();
   drawWheel();
-  // If they land on the page having already played today, stay on screen-review
-  // (they still need to see the CTA to leave a review, even if wheel is locked)
-  // The lock only triggers when they try to access the wheel.
 });
 
 // ─── CANVAS ───
@@ -801,29 +995,35 @@ function showResult() {
   const idx = Math.floor(pointerAngle / ARC) % NUM;
   const prize = prizes[idx];
 
-  const randomNum = Math.floor(Math.random() * 9000 + 1000);
-  const prizeCode = prize.code + '-' + randomNum;
+  const prizeCode = prize.lost ? '' : prize.code + '-' + Math.floor(Math.random() * 9000 + 1000);
 
-  // ─── Enregistrer le spin en localStorage ───
   saveSpin({
     timestamp: Date.now(),
     prizeLabel: prize.label.replace('\n', ' '),
     prizeEmoji: prize.emoji,
-    prizeCode: prizeCode
+    prizeCode: prizeCode,
+    lost: prize.lost
   });
 
-  document.getElementById('prizeEmoji').textContent = prize.emoji;
-  document.getElementById('prizeName').textContent = prize.label.replace('\n', ' ');
-  document.getElementById('prizeDesc').textContent = prize.desc;
-  document.getElementById('prizeCode').textContent = prizeCode;
-
-  document.getElementById('prizeModal').classList.add('show');
-  launchConfetti();
+  if (prize.lost) {
+    document.getElementById('lostModal').classList.add('show');
+  } else {
+    document.getElementById('prizeEmoji').textContent = prize.emoji;
+    document.getElementById('prizeName').textContent = prize.label.replace('\n', ' ');
+    document.getElementById('prizeDesc').textContent = prize.desc;
+    document.getElementById('prizeCode').textContent = prizeCode;
+    document.getElementById('prizeModal').classList.add('show');
+    launchConfetti();
+  }
 }
 
 function closeModal() {
   document.getElementById('prizeModal').classList.remove('show');
-  // Après fermeture du modal, afficher l'écran "déjà joué"
+  showUsedScreen();
+}
+
+function closeLostModal() {
+  document.getElementById('lostModal').classList.remove('show');
   showUsedScreen();
 }
 
