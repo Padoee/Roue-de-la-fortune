@@ -31,7 +31,6 @@
     color: var(--cream);
   }
 
-  /* ─── PARTICLES ─── */
   .particles {
     position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
   }
@@ -50,7 +49,6 @@
     100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
   }
 
-  /* ─── SCREENS ─── */
   .screen {
     display: none;
     position: relative; z-index: 1;
@@ -63,7 +61,7 @@
   }
   .screen.active { display: flex; }
 
-  /* ─── SCREEN 1: DEMANDE AVIS ─── */
+  /* ─── SCREEN 1 ─── */
   #screen-review .card {
     background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
     border: 1px solid rgba(201,168,76,0.3);
@@ -181,7 +179,7 @@
   }
   .btn-secondary:hover { color: rgba(253,246,227,0.7); }
 
-  /* ─── SCREEN 2: REDIRECT ─── */
+  /* ─── SCREEN 2 ─── */
   #screen-redirect .content {
     max-width: 380px;
     animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -230,9 +228,7 @@
   .manual-link a { color: var(--gold); text-decoration: underline; cursor: pointer; }
 
   /* ─── SCREEN 3: ROUE ─── */
-  #screen-wheel {
-    padding: 1.5rem;
-  }
+  #screen-wheel { padding: 1.5rem; }
   #screen-wheel h2 {
     font-family: 'Playfair Display', serif;
     font-size: 1.6rem;
@@ -247,7 +243,6 @@
     animation: slideUp 0.6s 0.1s both;
   }
 
-  /* Wheel container */
   .wheel-container {
     position: relative;
     width: 320px; height: 320px;
@@ -255,7 +250,6 @@
     animation: slideUp 0.6s 0.2s both;
   }
 
-  /* Pointer */
   .pointer {
     position: absolute;
     top: -18px;
@@ -266,7 +260,6 @@
   }
   .pointer svg { width: 36px; height: 36px; }
 
-  /* Outer ring */
   .wheel-outer {
     position: absolute;
     inset: -8px;
@@ -282,7 +275,6 @@
     display: block;
   }
 
-  /* Center button */
   .wheel-center {
     position: absolute;
     top: 50%; left: 50%;
@@ -331,7 +323,75 @@
   .spin-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.5); }
   .spin-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-  /* ─── MODAL PRIZE ─── */
+  /* ─── SCREEN 4: ALREADY PLAYED ─── */
+  #screen-used .card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    max-width: 400px;
+    width: 100%;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  #screen-used .lock-icon {
+    font-size: 3.5rem;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  #screen-used h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--gold-light);
+    margin-bottom: 1rem;
+  }
+  #screen-used p {
+    font-size: 0.9rem;
+    color: rgba(253,246,227,0.6);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .countdown-box {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 16px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .countdown-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(253,246,227,0.4);
+    margin-bottom: 0.5rem;
+  }
+  .countdown-time {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  /* ─── previous prize recap ─── */
+  .prev-prize {
+    background: rgba(201,168,76,0.06);
+    border: 1px dashed rgba(201,168,76,0.3);
+    border-radius: 12px;
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.82rem;
+    color: rgba(253,246,227,0.55);
+    line-height: 1.5;
+  }
+  .prev-prize strong {
+    display: block;
+    font-size: 1rem;
+    color: var(--gold-light);
+    margin-bottom: 0.2rem;
+  }
+
+  /* ─── MODAL ─── */
   .modal-overlay {
     display: none;
     position: fixed; inset: 0;
@@ -410,15 +470,6 @@
   }
   .modal .btn-primary { max-width: none; }
 
-  /* ─── DECORATIVE ─── */
-  .stars-deco {
-    position: fixed;
-    pointer-events: none;
-    font-size: 1rem;
-    opacity: 0.15;
-    z-index: 0;
-  }
-
   .line-deco {
     width: 80px; height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
@@ -428,12 +479,9 @@
 </head>
 <body>
 
-<!-- Particles -->
 <div class="particles" id="particles"></div>
 
-<!-- ═══════════════════════════════════════ -->
-<!-- SCREEN 1 : DEMANDE D'AVIS              -->
-<!-- ═══════════════════════════════════════ -->
+<!-- SCREEN 1: DEMANDE D'AVIS -->
 <div class="screen active" id="screen-review">
   <div class="card">
     <div class="restaurant-logo">🍽 Le Gourmet</div>
@@ -459,9 +507,7 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════ -->
-<!-- SCREEN 2 : REDIRECTION GOOGLE          -->
-<!-- ═══════════════════════════════════════ -->
+<!-- SCREEN 2: REDIRECTION GOOGLE -->
 <div class="screen" id="screen-redirect">
   <div class="content">
     <div class="spinner-ring"></div>
@@ -479,15 +525,12 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════ -->
-<!-- SCREEN 3 : ROUE DE LA FORTUNE          -->
-<!-- ═══════════════════════════════════════ -->
+<!-- SCREEN 3: ROUE -->
 <div class="screen" id="screen-wheel">
   <h2>La Roue des Saveurs</h2>
   <p class="subtitle">Tournez la roue et découvrez votre récompense 🍀</p>
 
   <div class="wheel-container">
-    <!-- Pointer -->
     <div class="pointer">
       <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 34 L6 8 Q18 2 30 8 Z" fill="#C9A84C"/>
@@ -501,14 +544,8 @@
         <circle cx="18" cy="9" r="3" fill="#fff8e7"/>
       </svg>
     </div>
-
-    <!-- Outer glow ring -->
     <div class="wheel-outer"></div>
-
-    <!-- Canvas wheel -->
     <canvas id="wheel" width="320" height="320"></canvas>
-
-    <!-- Center -->
     <div class="wheel-center" onclick="spinWheel()">TOURNER</div>
   </div>
 
@@ -517,9 +554,30 @@
   </button>
 </div>
 
-<!-- ═══════════════════════════════════════ -->
-<!-- MODAL : RÉSULTAT                        -->
-<!-- ═══════════════════════════════════════ -->
+<!-- SCREEN 4: DÉJÀ JOUÉ -->
+<div class="screen" id="screen-used">
+  <div class="card">
+    <span class="lock-icon">⏳</span>
+    <h2>Votre chance reviendra bientôt</h2>
+    <p>Vous avez déjà tourné la roue aujourd'hui. Revenez dans :</p>
+
+    <div class="countdown-box">
+      <div class="countdown-label">Prochaine tentative disponible dans</div>
+      <div class="countdown-time" id="countdown">--:--:--</div>
+    </div>
+
+    <div class="prev-prize" id="prev-prize-box" style="display:none;">
+      <strong id="prev-prize-label"></strong>
+      🎟 Code : <span id="prev-prize-code" style="font-family:monospace; color:var(--gold); font-weight:700;"></span>
+    </div>
+
+    <p style="font-size:0.8rem; color:rgba(253,246,227,0.3); margin-bottom:0;">
+      Une seule tentative toutes les 24h par appareil.
+    </p>
+  </div>
+</div>
+
+<!-- MODAL: RÉSULTAT -->
 <div class="modal-overlay" id="prizeModal">
   <div class="modal">
     <span class="confetti-emoji" id="prizeEmoji">🎉</span>
@@ -539,17 +597,39 @@
 </div>
 
 <script>
-// ─── CONFIG DES RÉCOMPENSES ───
+// ─── CONFIG ───
+const STORAGE_KEY = 'roue_saveurs_spin';
+const COOLDOWN_MS = 24 * 60 * 60 * 1000; // 24 heures
+const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJpSWiLADvBUgRoMKiZQL9a5o";
+
 const prizes = [
-  { label: "Dessert\nOffert",   emoji: "🍰", color: "#8B1A1A",  desc: "Un dessert de votre choix offert par la maison !",    code: "DESSERT" },
-  { label: "Boisson\nOfferte",  emoji: "🍷", color: "#1A2E5C",  desc: "Une boisson (soft ou verre de vin) offerte !",         code: "BOISSON" },
-  { label: "Café\nOffert",      emoji: "☕", color: "#3D2800",  desc: "Un café ou thé offert en fin de repas.",               code: "CAFE"    },
-  { label: "Plat\nOffert",      emoji: "🍽", color: "#1A5C2A",  desc: "Un plat principal offert lors de votre prochaine visite.", code: "PLAT" },
-  { label: "-10%\nAddition",    emoji: "💫", color: "#5C1A4A",  desc: "10% de réduction sur votre addition de ce soir.",      code: "REMISE10" },
-  { label: "Apéritif\nMaison",  emoji: "🥂", color: "#4A3000",  desc: "Un apéritif maison offert pour commencer.",            code: "APERITIF" },
+  { label: "Dessert\nOffert",   emoji: "🍰", color: "#8B1A1A",  desc: "Un dessert de votre choix offert par la maison !",         code: "DESSERT"  },
+  { label: "Boisson\nOfferte",  emoji: "🍷", color: "#1A2E5C",  desc: "Une boisson (soft ou verre de vin) offerte !",              code: "BOISSON"  },
+  { label: "Café\nOffert",      emoji: "☕", color: "#3D2800",  desc: "Un café ou thé offert en fin de repas.",                   code: "CAFE"     },
+  { label: "Plat\nOffert",      emoji: "🍽", color: "#1A5C2A",  desc: "Un plat principal offert lors de votre prochaine visite.", code: "PLAT"     },
+  { label: "-10%\nAddition",    emoji: "💫", color: "#5C1A4A",  desc: "10% de réduction sur votre addition de ce soir.",          code: "REMISE10" },
+  { label: "Apéritif\nMaison",  emoji: "🥂", color: "#4A3000",  desc: "Un apéritif maison offert pour commencer.",                code: "APERITIF" },
   { label: "-20%\nAddition",    emoji: "🎉", color: "#C45000",  desc: "20% de réduction sur votre addition — c'est votre jour de chance !", code: "REMISE20" },
-  { label: "Entrée\nOfferte",   emoji: "🥗", color: "#0A4A3C",  desc: "Une entrée au choix offerte ce soir.",                 code: "ENTREE"  },
+  { label: "Entrée\nOfferte",   emoji: "🥗", color: "#0A4A3C",  desc: "Une entrée au choix offerte ce soir.",                    code: "ENTREE"   },
 ];
+
+// ─── STORAGE HELPERS ───
+function getSpin() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch { return null; }
+}
+function saveSpin(data) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
+}
+function hasPlayedToday() {
+  const spin = getSpin();
+  if (!spin) return false;
+  return (Date.now() - spin.timestamp) < COOLDOWN_MS;
+}
+function timeUntilNext() {
+  const spin = getSpin();
+  if (!spin) return 0;
+  return Math.max(0, COOLDOWN_MS - (Date.now() - spin.timestamp));
+}
 
 // ─── NAVIGATION ───
 function showScreen(id) {
@@ -557,10 +637,8 @@ function showScreen(id) {
   document.getElementById(id).classList.add('active');
 }
 
-// 🔧 REMPLACER PAR L'URL GOOGLE AVIS DU RESTAURANT
-const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJpSWiLADvBUgRoMKiZQL9a5o";
-
 function goToReview() {
+  if (hasPlayedToday()) { showUsedScreen(); return; }
   showScreen('screen-redirect');
 }
 
@@ -572,6 +650,7 @@ function openGoogleAndContinue() {
 }
 
 function showWheel() {
+  if (hasPlayedToday()) { showUsedScreen(); return; }
   showScreen('screen-wheel');
   drawWheel();
 }
@@ -580,7 +659,48 @@ function skipToWheel() {
   showWheel();
 }
 
-// ─── CANVAS WHEEL ───
+// ─── SCREEN DÉJÀ JOUÉ ───
+function showUsedScreen() {
+  showScreen('screen-used');
+  const spin = getSpin();
+  if (spin) {
+    document.getElementById('prev-prize-box').style.display = 'block';
+    document.getElementById('prev-prize-label').textContent = spin.prizeLabel + ' ' + spin.prizeEmoji;
+    document.getElementById('prev-prize-code').textContent = spin.prizeCode;
+  }
+  startCountdown();
+}
+
+let countdownInterval = null;
+function startCountdown() {
+  if (countdownInterval) clearInterval(countdownInterval);
+  function update() {
+    const ms = timeUntilNext();
+    if (ms <= 0) {
+      document.getElementById('countdown').textContent = '00:00:00';
+      clearInterval(countdownInterval);
+      return;
+    }
+    const h = Math.floor(ms / 3600000);
+    const m = Math.floor((ms % 3600000) / 60000);
+    const s = Math.floor((ms % 60000) / 1000);
+    document.getElementById('countdown').textContent =
+      String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+  }
+  update();
+  countdownInterval = setInterval(update, 1000);
+}
+
+// ─── INIT: check state on load ───
+window.addEventListener('DOMContentLoaded', () => {
+  createParticles();
+  drawWheel();
+  // If they land on the page having already played today, stay on screen-review
+  // (they still need to see the CTA to leave a review, even if wheel is locked)
+  // The lock only triggers when they try to access the wheel.
+});
+
+// ─── CANVAS ───
 const canvas = document.getElementById('wheel');
 const ctx = canvas.getContext('2d');
 const NUM = prizes.length;
@@ -597,7 +717,6 @@ function drawWheel(angle = 0) {
     const end   = start + ARC;
     const p = prizes[i];
 
-    // Slice fill
     ctx.beginPath();
     ctx.moveTo(cx, cy);
     ctx.arc(cx, cy, r, start, end);
@@ -605,12 +724,10 @@ function drawWheel(angle = 0) {
     ctx.fillStyle = p.color;
     ctx.fill();
 
-    // Slice border
     ctx.strokeStyle = 'rgba(201,168,76,0.4)';
     ctx.lineWidth = 1.5;
     ctx.stroke();
 
-    // Emoji + text
     const mid = start + ARC / 2;
     const tx = cx + (r * 0.62) * Math.cos(mid);
     const ty = cy + (r * 0.62) * Math.sin(mid);
@@ -619,24 +736,19 @@ function drawWheel(angle = 0) {
     ctx.translate(tx, ty);
     ctx.rotate(mid + Math.PI / 2);
 
-    // Emoji
     ctx.font = '20px serif';
     ctx.textAlign = 'center';
     ctx.fillText(p.emoji, 0, -14);
 
-    // Label
     ctx.font = 'bold 10.5px "DM Sans", sans-serif';
     ctx.fillStyle = '#FDF6E3';
     ctx.shadowColor = 'rgba(0,0,0,0.8)';
     ctx.shadowBlur = 4;
     const lines = p.label.split('\n');
-    lines.forEach((line, li) => {
-      ctx.fillText(line, 0, li * 13 + 3);
-    });
+    lines.forEach((line, li) => { ctx.fillText(line, 0, li * 13 + 3); });
     ctx.restore();
   }
 
-  // Inner shadow circle
   const grad = ctx.createRadialGradient(cx, cy, r * 0.5, cx, cy, r);
   grad.addColorStop(0, 'transparent');
   grad.addColorStop(1, 'rgba(0,0,0,0.15)');
@@ -649,33 +761,28 @@ function drawWheel(angle = 0) {
 // ─── SPIN ───
 function spinWheel() {
   if (spinning) return;
-  spinning = true;
+  if (hasPlayedToday()) { showUsedScreen(); return; }
 
+  spinning = true;
   const btn = document.getElementById('spinBtn');
   btn.disabled = true;
   btn.textContent = '🌀 En cours…';
+  document.querySelector('.wheel-center').style.pointerEvents = 'none';
 
-  // Random full rotations + stop angle
   const extraSpins = (5 + Math.floor(Math.random() * 5)) * 2 * Math.PI;
   const stopAt = Math.random() * 2 * Math.PI;
   const totalAngle = extraSpins + stopAt;
-
   const duration = 4500;
   const start = performance.now();
   const startAngle = currentAngle;
 
-  function easeOut(t) {
-    return 1 - Math.pow(1 - t, 4);
-  }
+  function easeOut(t) { return 1 - Math.pow(1 - t, 4); }
 
   function frame(now) {
     const elapsed = now - start;
     const progress = Math.min(elapsed / duration, 1);
-    const eased = easeOut(progress);
-
-    currentAngle = startAngle + totalAngle * eased;
+    currentAngle = startAngle + totalAngle * easeOut(progress);
     drawWheel(currentAngle);
-
     if (progress < 1) {
       requestAnimationFrame(frame);
     } else {
@@ -689,18 +796,26 @@ function spinWheel() {
 }
 
 function showResult() {
-  // The pointer is at top (−π/2). Find which segment it points to.
   const normalizedAngle = ((-currentAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
   const pointerAngle = (normalizedAngle + Math.PI * 1.5) % (2 * Math.PI);
   const idx = Math.floor(pointerAngle / ARC) % NUM;
   const prize = prizes[idx];
 
+  const randomNum = Math.floor(Math.random() * 9000 + 1000);
+  const prizeCode = prize.code + '-' + randomNum;
+
+  // ─── Enregistrer le spin en localStorage ───
+  saveSpin({
+    timestamp: Date.now(),
+    prizeLabel: prize.label.replace('\n', ' '),
+    prizeEmoji: prize.emoji,
+    prizeCode: prizeCode
+  });
+
   document.getElementById('prizeEmoji').textContent = prize.emoji;
   document.getElementById('prizeName').textContent = prize.label.replace('\n', ' ');
   document.getElementById('prizeDesc').textContent = prize.desc;
-
-  const randomNum = Math.floor(Math.random() * 9000 + 1000);
-  document.getElementById('prizeCode').textContent = prize.code + '-' + randomNum;
+  document.getElementById('prizeCode').textContent = prizeCode;
 
   document.getElementById('prizeModal').classList.add('show');
   launchConfetti();
@@ -708,15 +823,12 @@ function showResult() {
 
 function closeModal() {
   document.getElementById('prizeModal').classList.remove('show');
-  // Reset spin button for screenshot / demo only
-  const btn = document.getElementById('spinBtn');
-  btn.disabled = false;
-  btn.textContent = '🎡 Faire tourner la roue !';
+  // Après fermeture du modal, afficher l'écran "déjà joué"
+  showUsedScreen();
 }
 
 // ─── CONFETTI ───
 function launchConfetti() {
-  const container = document.getElementById('particles');
   const colors = ['#C9A84C','#F0D080','#fff','#FF6B6B','#4ECDC4','#A8E6CF'];
   for (let i = 0; i < 60; i++) {
     const div = document.createElement('div');
@@ -738,7 +850,7 @@ function launchConfetti() {
   }
 }
 
-// ─── BACKGROUND PARTICLES ───
+// ─── PARTICLES ───
 function createParticles() {
   const container = document.getElementById('particles');
   for (let i = 0; i < 30; i++) {
@@ -755,20 +867,12 @@ function createParticles() {
   }
 }
 
-// ─── CONFETTI KEYFRAME (dynamic) ───
 const styleEl = document.createElement('style');
-styleEl.textContent = `
-  @keyframes conf {
-    0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(-80vh) rotate(${Math.random()*720}deg); opacity: 0; }
-  }
-`;
+styleEl.textContent = `@keyframes conf { 0% { transform:translateY(0) rotate(0deg); opacity:1; } 100% { transform:translateY(-80vh) rotate(720deg); opacity:0; } }`;
 document.head.appendChild(styleEl);
 
-// ─── INIT ───
 createParticles();
-drawWheel(); // draw initially so canvas is ready
+drawWheel();
 </script>
-
 </body>
 </html>
