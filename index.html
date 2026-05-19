@@ -225,24 +225,8 @@ const prizes = [
   { label:"Pas\nde chance",   emoji:"😔", color:"#2A2A2A", desc:"",                                                code:"",         lost:true  }
 ];
 
-function getCookie(name) {
-  const m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-  return m ? decodeURIComponent(m[2]) : null;
-}
-function setCookie(name, value, ms) {
-  const expires = new Date(Date.now() + ms).toUTCString();
-  document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + expires + ';path=/;SameSite=Strict';
-}
-function getSpin() {
-  try { const ls = localStorage.getItem(STORAGE_KEY); if (ls) return JSON.parse(ls); } catch {}
-  try { const ck = getCookie(STORAGE_KEY); if (ck) return JSON.parse(ck); } catch {}
-  return null;
-}
-function saveSpin(d) {
-  const val = JSON.stringify(d);
-  try { localStorage.setItem(STORAGE_KEY, val); } catch {}
-  try { setCookie(STORAGE_KEY, val, COOLDOWN_MS); } catch {}
-}
+function getSpin() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch { return null; } }
+function saveSpin(d) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); } catch {} }
 function hasPlayedToday() { const s=getSpin(); return s ? (Date.now()-s.timestamp)<COOLDOWN_MS : false; }
 function timeUntilNext() { const s=getSpin(); return s ? Math.max(0,COOLDOWN_MS-(Date.now()-s.timestamp)) : 0; }
 function showScreen(id) { document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
