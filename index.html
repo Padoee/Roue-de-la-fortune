@@ -85,7 +85,6 @@
   .prev-prize { background:rgba(201,168,76,0.06); border:1px dashed rgba(201,168,76,0.3); border-radius:12px; padding:0.9rem 1.2rem; margin-bottom:1.5rem; font-size:0.82rem; color:rgba(253,246,227,0.55); line-height:1.5; }
   .prev-prize strong { display:block; font-size:1rem; color:var(--gold-light); margin-bottom:0.2rem; }
 
-<<<<<<< HEAD
   /* MODALS */
   .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:100; align-items:center; justify-content:center; padding:2rem; backdrop-filter:blur(6px); overflow-y:auto; }
   .modal-overlay.show { display:flex; }
@@ -99,488 +98,6 @@
   .coupon-box { background:rgba(201,168,76,0.1); border:1px dashed var(--gold); border-radius:12px; padding:1rem; margin-bottom:1.5rem; font-size:0.82rem; color:rgba(253,246,227,0.6); }
   .coupon-code { font-family:monospace; font-size:1.2rem; font-weight:700; color:var(--gold); letter-spacing:0.2em; display:block; margin-top:0.3rem; }
   .btn-close-dark { display:block; width:100%; padding:1rem 2rem; background:linear-gradient(135deg,#3a3a3a,#1a1a1a); color:rgba(253,246,227,0.7); font-family:'DM Sans',sans-serif; font-weight:700; font-size:1rem; border:none; border-radius:14px; cursor:pointer; }
-=======
-  .prizes-preview {
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-  .prize-tag {
-    background: rgba(201,168,76,0.15);
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 20px;
-    padding: 0.3rem 0.8rem;
-    font-size: 0.78rem;
-    color: var(--gold-light);
-    font-weight: 500;
-  }
-
-  .btn-primary {
-    display: block;
-    width: 100%;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-    color: var(--deep);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-    border: none;
-    border-radius: 14px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 30px rgba(201,168,76,0.4);
-    position: relative;
-    overflow: hidden;
-  }
-  .btn-primary::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.5); }
-  .btn-primary:hover::after { opacity: 1; }
-  .btn-primary:active { transform: translateY(0); }
-
-  .btn-secondary {
-    display: block;
-    margin-top: 1rem;
-    padding: 0.6rem;
-    background: transparent;
-    color: rgba(253,246,227,0.4);
-    font-size: 0.8rem;
-    border: none;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    text-decoration: underline;
-    transition: color 0.2s;
-  }
-  .btn-secondary:hover { color: rgba(253,246,227,0.7); }
-
-  /* ─── SCREEN 2 ─── */
-  #screen-redirect .content {
-    max-width: 380px;
-    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  /* Waiting animation */
-  .waiting-ring-wrapper {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 2rem;
-  }
-  .spinner-ring {
-    width: 100px; height: 100px;
-    border: 3px solid rgba(201,168,76,0.15);
-    border-top-color: var(--gold);
-    border-right-color: rgba(201,168,76,0.5);
-    border-radius: 50%;
-    animation: spin 1.4s cubic-bezier(0.68, 0, 0.32, 1) infinite;
-    position: absolute;
-    inset: 0;
-  }
-  .waiting-ring-wrapper .ring-icon {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    animation: pulse-icon 2s ease-in-out infinite;
-  }
-  @keyframes pulse-icon {
-    0%, 100% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.15); opacity: 1; }
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  #screen-redirect h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--gold-light);
-    margin-bottom: 1rem;
-  }
-  #screen-redirect .status-msg {
-    color: rgba(253,246,227,0.6);
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-  }
-
-  /* Status indicator */
-  .status-indicator {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background: rgba(201,168,76,0.08);
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 50px;
-    padding: 0.5rem 1.2rem;
-    font-size: 0.8rem;
-    color: rgba(253,246,227,0.5);
-    margin-bottom: 2rem;
-    animation: breathe 2.5s ease-in-out infinite;
-  }
-  .status-dot {
-    width: 7px; height: 7px;
-    background: var(--gold);
-    border-radius: 50%;
-    animation: blink 1.2s ease-in-out infinite;
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.3; transform: scale(0.7); }
-  }
-  @keyframes breathe {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
-    50% { box-shadow: 0 0 0 6px rgba(201,168,76,0.05); }
-  }
-
-  .google-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: white;
-    color: #333;
-    padding: 0.6rem 1.2rem;
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 2rem;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border: none;
-  }
-  .google-badge:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(255,255,255,0.15);
-  }
-  .google-g {
-    font-size: 1.1rem;
-    background: linear-gradient(135deg, #4285f4, #ea4335, #fbbc05, #34a853);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 900;
-  }
-  .manual-link {
-    font-size: 0.82rem;
-    color: rgba(253,246,227,0.4);
-    margin-top: 1rem;
-  }
-  .manual-link a {
-    color: var(--gold);
-    text-decoration: underline;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-  .manual-link a:hover { opacity: 0.8; }
-
-  /* ─── SCREEN 2b: RETOUR DÉTECTÉ ─── */
-  #screen-returning .content {
-    max-width: 380px;
-    animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-  #screen-returning h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    color: var(--gold-light);
-    margin-bottom: 0.75rem;
-  }
-  #screen-returning p {
-    color: rgba(253,246,227,0.6);
-    line-height: 1.6;
-    margin-bottom: 2rem;
-    font-size: 0.95rem;
-  }
-  .return-icon {
-    font-size: 4rem;
-    display: block;
-    margin-bottom: 1.5rem;
-    animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  }
-  @keyframes bounceIn {
-    from { transform: scale(0) rotate(-20deg); opacity: 0; }
-    to { transform: scale(1) rotate(0deg); opacity: 1; }
-  }
-  /* progress bar auto-redirect */
-  .auto-redirect-bar {
-    width: 100%;
-    height: 4px;
-    background: rgba(201,168,76,0.15);
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 1.5rem;
-  }
-  .auto-redirect-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--gold-dark), var(--gold));
-    border-radius: 4px;
-    width: 0%;
-    transition: width linear;
-  }
-  .auto-redirect-label {
-    font-size: 0.78rem;
-    color: rgba(253,246,227,0.35);
-    margin-bottom: 2rem;
-    margin-top: -1rem;
-  }
-
-  /* ─── SCREEN 3: ROUE ─── */
-  #screen-wheel { padding: 1.5rem; }
-  #screen-wheel h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    color: var(--gold-light);
-    margin-bottom: 0.5rem;
-    animation: slideUp 0.6s both;
-  }
-  #screen-wheel .subtitle {
-    font-size: 0.85rem;
-    color: rgba(253,246,227,0.5);
-    margin-bottom: 1.5rem;
-    animation: slideUp 0.6s 0.1s both;
-  }
-
-  .wheel-container {
-    position: relative;
-    width: 320px; height: 320px;
-    margin: 0 auto;
-    animation: slideUp 0.6s 0.2s both;
-  }
-
-  .pointer {
-    position: absolute;
-    top: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
-  }
-  .pointer svg { width: 36px; height: 36px; }
-
-  .wheel-outer {
-    position: absolute;
-    inset: -8px;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, var(--gold), var(--gold-dark), var(--gold), var(--gold-dark), var(--gold));
-    box-shadow: 0 0 40px rgba(201,168,76,0.4), 0 0 80px rgba(201,168,76,0.1);
-  }
-
-  canvas#wheel {
-    position: relative;
-    z-index: 2;
-    border-radius: 50%;
-    display: block;
-  }
-
-  .wheel-center {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    background: linear-gradient(145deg, #fff8e7, #c9a84c);
-    border: 4px solid var(--deep);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: var(--deep);
-    letter-spacing: 0.05em;
-    text-align: center;
-    line-height: 1.2;
-    transition: transform 0.2s;
-    padding: 0.5rem;
-  }
-  .wheel-center:hover { transform: translate(-50%, -50%) scale(1.08); }
-  .wheel-center:active { transform: translate(-50%, -50%) scale(0.96); }
-
-  .spin-btn {
-    display: block;
-    width: 100%;
-    max-width: 280px;
-    margin: 1.5rem auto 0;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-    color: var(--deep);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 1.05rem;
-    border: none;
-    border-radius: 14px;
-    cursor: pointer;
-    box-shadow: 0 8px 30px rgba(201,168,76,0.4);
-    transition: all 0.3s;
-    animation: slideUp 0.6s 0.3s both;
-    letter-spacing: 0.05em;
-  }
-  .spin-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.5); }
-  .spin-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-  /* ─── SCREEN 4: ALREADY PLAYED ─── */
-  #screen-used .card {
-    background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 24px;
-    padding: 3rem 2.5rem;
-    max-width: 400px;
-    width: 100%;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-  #screen-used .lock-icon {
-    font-size: 3.5rem;
-    display: block;
-    margin-bottom: 1.5rem;
-  }
-  #screen-used h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    color: var(--gold-light);
-    margin-bottom: 1rem;
-  }
-  #screen-used p {
-    font-size: 0.9rem;
-    color: rgba(253,246,227,0.6);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-  .countdown-box {
-    background: rgba(201,168,76,0.08);
-    border: 1px solid rgba(201,168,76,0.25);
-    border-radius: 16px;
-    padding: 1.2rem 1.5rem;
-    margin-bottom: 2rem;
-  }
-  .countdown-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(253,246,227,0.4);
-    margin-bottom: 0.5rem;
-  }
-  .countdown-time {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 0.05em;
-  }
-  .prev-prize {
-    background: rgba(201,168,76,0.06);
-    border: 1px dashed rgba(201,168,76,0.3);
-    border-radius: 12px;
-    padding: 0.9rem 1.2rem;
-    margin-bottom: 1.5rem;
-    font-size: 0.82rem;
-    color: rgba(253,246,227,0.55);
-    line-height: 1.5;
-  }
-  .prev-prize strong {
-    display: block;
-    font-size: 1rem;
-    color: var(--gold-light);
-    margin-bottom: 0.2rem;
-  }
-
-  /* ─── MODAL ─── */
-  .modal-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    backdrop-filter: blur(6px);
-  }
-  .modal-overlay.show { display: flex; }
-  .modal {
-    background: linear-gradient(145deg, #1e0e00, #2a1500);
-    border: 1px solid rgba(201,168,76,0.4);
-    border-radius: 24px;
-    padding: 3rem 2rem;
-    max-width: 360px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 60px rgba(201,168,76,0.1);
-    animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  }
-  @keyframes popIn {
-    from { opacity: 0; transform: scale(0.5) rotate(-5deg); }
-    to   { opacity: 1; transform: scale(1) rotate(0deg); }
-  }
-  .confetti-emoji {
-    font-size: 3.5rem;
-    display: block;
-    margin-bottom: 1rem;
-    animation: tada 0.8s 0.3s both;
-  }
-  @keyframes tada {
-    0%   { transform: scale(0) rotate(-20deg); }
-    60%  { transform: scale(1.2) rotate(5deg); }
-    80%  { transform: scale(0.95) rotate(-3deg); }
-    100% { transform: scale(1) rotate(0deg); }
-  }
-  .modal h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    color: rgba(253,246,227,0.6);
-    margin-bottom: 0.5rem;
-  }
-  .modal .prize-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--gold-light);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-  .modal .prize-desc {
-    font-size: 0.88rem;
-    color: rgba(253,246,227,0.5);
-    margin-bottom: 2rem;
-    line-height: 1.5;
-  }
-  .coupon-box {
-    background: rgba(201,168,76,0.1);
-    border: 1px dashed var(--gold);
-    border-radius: 12px;
-    padding: 1rem;
-    margin-bottom: 2rem;
-    font-size: 0.82rem;
-    color: rgba(253,246,227,0.6);
-  }
-  .coupon-code {
-    font-family: monospace;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 0.2em;
-    display: block;
-    margin-top: 0.3rem;
-  }
-  .modal .btn-primary { max-width: none; }
-
-  .line-deco {
-    width: 80px; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 0 auto 1.5rem;
-  }
->>>>>>> parent of 11028c6 (over and over)
 </style>
 </head>
 <body>
@@ -605,7 +122,6 @@
   </div>
 </div>
 
-<<<<<<< HEAD
 <!-- SCREEN AVIS GOOGLE -->
 <div class="screen" id="screen-google">
   <div class="card">
@@ -631,53 +147,6 @@
 </div>
 
 <!-- SCREEN ROUE -->
-=======
-<!-- SCREEN 2: REDIRECTION GOOGLE -->
-<div class="screen" id="screen-redirect">
-  <div class="content">
-    <div class="waiting-ring-wrapper">
-      <div class="spinner-ring"></div>
-      <div class="ring-icon">⭐</div>
-    </div>
-    <h2>Google s'est ouvert !</h2>
-    <p class="status-msg">Laissez votre avis, puis revenez ici.<br>La roue se lancera automatiquement dès votre retour !</p>
-
-    <div class="status-indicator">
-      <div class="status-dot"></div>
-      En attente de votre retour…
-    </div>
-
-    <button class="google-badge" onclick="openGoogleAndWait()">
-      <span class="google-g">G</span>
-      Ouvrir Google Avis
-    </button>
-
-    <p class="manual-link">
-      Déjà de retour ? <a onclick="showWheel()">Accéder à la roue →</a>
-    </p>
-  </div>
-</div>
-
-<!-- SCREEN 2b: RETOUR DÉTECTÉ -->
-<div class="screen" id="screen-returning">
-  <div class="content">
-    <span class="return-icon">🎡</span>
-    <h2>Bienvenue de retour !</h2>
-    <p>Merci pour votre avis ⭐<br>Vous êtes sur le point de découvrir votre récompense…</p>
-
-    <div class="auto-redirect-bar">
-      <div class="auto-redirect-fill" id="autoFill"></div>
-    </div>
-    <p class="auto-redirect-label">Redirection vers la roue en cours…</p>
-
-    <button class="btn-primary" onclick="showWheel()" style="max-width:280px; margin:0 auto;">
-      🎡 Tourner la roue maintenant !
-    </button>
-  </div>
-</div>
-
-<!-- SCREEN 3: ROUE -->
->>>>>>> parent of 11028c6 (over and over)
 <div class="screen" id="screen-wheel">
   <h2>La Roue des Saveurs</h2>
   <p class="subtitle">Tournez la roue et découvrez votre récompense 🍀</p>
@@ -745,11 +214,7 @@
 <script>
 const STORAGE_KEY = 'roue_saveurs_spin';
 const COOLDOWN_MS = 24 * 60 * 60 * 1000;
-<<<<<<< HEAD
 const PLACE_ID = "ChIJpSWiLADvBUgRoMKiZQL9a5o";
-=======
-const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJpSWiLADvBUgRoMKiZQL9a5o";
->>>>>>> parent of 11028c6 (over and over)
 
 const prizes = [
   { label:"Dessert\nOffert",  emoji:"🍰", color:"#8B1A1A", desc:"Un dessert de votre choix offert par Le Gourmet !", code:"DESSERT",  lost:false },
@@ -760,7 +225,6 @@ const prizes = [
   { label:"Pas\nde chance",   emoji:"😔", color:"#2A2A2A", desc:"",                                                code:"",         lost:true  }
 ];
 
-<<<<<<< HEAD
 function getCookie(name) {
   const m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
   return m ? decodeURIComponent(m[2]) : null;
@@ -769,13 +233,6 @@ function setCookie(name, value, ms) {
   const expires = new Date(Date.now() + ms).toUTCString();
   document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + expires + ';path=/;SameSite=Strict';
 }
-=======
-// ─── STATE ───
-let waitingForReturn = false;   // true après ouverture de Google
-let autoRedirectTimer = null;
-
-// ─── STORAGE HELPERS ───
->>>>>>> parent of 11028c6 (over and over)
 function getSpin() {
   try { const ls = localStorage.getItem(STORAGE_KEY); if (ls) return JSON.parse(ls); } catch {}
   try { const ck = getCookie(STORAGE_KEY); if (ck) return JSON.parse(ck); } catch {}
@@ -795,7 +252,6 @@ function goToGoogleReview() {
   showScreen('screen-google');
 }
 
-<<<<<<< HEAD
 function openGoogleReview() {
   const webUrl = "https://search.google.com/local/writereview?placeid=" + PLACE_ID;
   window.open(webUrl, '_blank');
@@ -815,40 +271,6 @@ function openGoogleReview() {
 }
 
 function goToWheel() {
-=======
-// ─── OUVERTURE GOOGLE + ÉCOUTE DU RETOUR ───
-function openGoogleAndWait() {
-  window.open(GOOGLE_REVIEW_URL, '_blank');
-  waitingForReturn = true;
-}
-
-// Détection du retour sur l'onglet via visibilitychange
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible' && waitingForReturn) {
-    waitingForReturn = false;
-    if (hasPlayedToday()) { showUsedScreen(); return; }
-    showReturningScreen();
-  }
-});
-
-// ─── ÉCRAN INTERMÉDIAIRE : RETOUR DÉTECTÉ ───
-function showReturningScreen() {
-  showScreen('screen-returning');
-  const DELAY = 2500; // ms avant redirection auto
-  const fill = document.getElementById('autoFill');
-  fill.style.transition = `width ${DELAY}ms linear`;
-  // Force reflow pour que la transition parte de 0
-  fill.getBoundingClientRect();
-  fill.style.width = '100%';
-
-  autoRedirectTimer = setTimeout(() => {
-    showWheel();
-  }, DELAY);
-}
-
-function showWheel() {
-  if (autoRedirectTimer) { clearTimeout(autoRedirectTimer); autoRedirectTimer = null; }
->>>>>>> parent of 11028c6 (over and over)
   if (hasPlayedToday()) { showUsedScreen(); return; }
   showScreen('screen-wheel');
   drawWheel();
@@ -880,16 +302,9 @@ function startCountdown() {
   update(); countdownInterval = setInterval(update, 1000);
 }
 
-<<<<<<< HEAD
 window.addEventListener('DOMContentLoaded', () => {
   createParticles(); drawWheel();
   if (hasPlayedToday()) showUsedScreen();
-=======
-// ─── INIT ───
-window.addEventListener('DOMContentLoaded', () => {
-  createParticles();
-  drawWheel();
->>>>>>> parent of 11028c6 (over and over)
 });
 
 // ── CANVAS / ROUE ──
@@ -941,7 +356,6 @@ function spinWheel() {
 }
 
 function showResult() {
-<<<<<<< HEAD
   const na = ((-currentAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
   const pa = (na + Math.PI * 1.5) % (2 * Math.PI);
   const idx = Math.floor(pa / ARC) % NUM, prize = prizes[idx];
@@ -961,36 +375,6 @@ function showResult() {
 
 function closeModal() { document.getElementById('prizeModal').classList.remove('show'); showUsedScreen(); }
 function closeLostModal() { document.getElementById('lostModal').classList.remove('show'); showUsedScreen(); }
-=======
-  const normalizedAngle = ((-currentAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
-  const pointerAngle = (normalizedAngle + Math.PI * 1.5) % (2 * Math.PI);
-  const idx = Math.floor(pointerAngle / ARC) % NUM;
-  const prize = prizes[idx];
-
-  const randomNum = Math.floor(Math.random() * 9000 + 1000);
-  const prizeCode = prize.code + '-' + randomNum;
-
-  saveSpin({
-    timestamp: Date.now(),
-    prizeLabel: prize.label.replace('\n', ' '),
-    prizeEmoji: prize.emoji,
-    prizeCode: prizeCode
-  });
-
-  document.getElementById('prizeEmoji').textContent = prize.emoji;
-  document.getElementById('prizeName').textContent = prize.label.replace('\n', ' ');
-  document.getElementById('prizeDesc').textContent = prize.desc;
-  document.getElementById('prizeCode').textContent = prizeCode;
-
-  document.getElementById('prizeModal').classList.add('show');
-  launchConfetti();
-}
-
-function closeModal() {
-  document.getElementById('prizeModal').classList.remove('show');
-  showUsedScreen();
-}
->>>>>>> parent of 11028c6 (over and over)
 
 function launchConfetti() {
   const colors = ['#C9A84C','#F0D080','#fff','#FF6B6B','#4ECDC4','#A8E6CF'];
