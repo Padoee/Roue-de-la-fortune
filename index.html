@@ -7,506 +7,104 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold: #C9A84C;
-    --gold-light: #F0D080;
-    --gold-dark: #8B6914;
-    --deep: #1A0A00;
-    --cream: #FDF6E3;
-    --red: #8B1A1A;
-    --green: #1A5C2A;
-    --blue: #1A2E5C;
-    --purple: #3D1A5C;
-    --orange: #C45000;
-    --teal: #0A4A3C;
-    --pink: #8B2252;
+    --gold: #C9A84C; --gold-light: #F0D080; --gold-dark: #8B6914;
+    --deep: #1A0A00; --cream: #FDF6E3;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--deep);
-    min-height: 100vh;
-    overflow-x: hidden;
-    color: var(--cream);
-  }
-
-  .particles {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
-  }
-  .particle {
-    position: absolute;
-    width: 3px; height: 3px;
-    background: var(--gold);
-    border-radius: 50%;
-    animation: float linear infinite;
-    opacity: 0;
-  }
-  @keyframes float {
-    0%   { transform: translateY(100vh) scale(0); opacity: 0; }
-    10%  { opacity: 0.6; }
-    90%  { opacity: 0.4; }
-    100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-  }
-
-  .screen {
-    display: none;
-    position: relative; z-index: 1;
-    min-height: 100vh;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 2rem;
-    text-align: center;
-  }
+  body { font-family: 'DM Sans', sans-serif; background: var(--deep); min-height: 100vh; overflow-x: hidden; color: var(--cream); }
+  .particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .particle { position: absolute; width: 3px; height: 3px; background: var(--gold); border-radius: 50%; animation: float linear infinite; opacity: 0; }
+  @keyframes float { 0%{transform:translateY(100vh) scale(0);opacity:0} 10%{opacity:0.6} 90%{opacity:0.4} 100%{transform:translateY(-10vh) scale(1.5);opacity:0} }
+  .screen { display: none; position: relative; z-index: 1; min-height: 100vh; align-items: center; justify-content: center; flex-direction: column; padding: 2rem; text-align: center; }
   .screen.active { display: flex; }
-
-  /* ─── SCREEN 1 ─── */
-  #screen-review .card {
+  .card {
     background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 24px;
-    padding: 3rem 2.5rem;
-    max-width: 420px;
-    width: 100%;
-    backdrop-filter: blur(20px);
+    border: 1px solid rgba(201,168,76,0.3); border-radius: 24px; padding: 3rem 2.5rem;
+    max-width: 420px; width: 100%; backdrop-filter: blur(20px);
     box-shadow: 0 40px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
-    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: slideUp 0.8s cubic-bezier(0.16,1,0.3,1) both;
   }
-  @keyframes slideUp {
-    from { opacity: 0; transform: translateY(40px) scale(0.95); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
-  }
+  @keyframes slideUp { from{opacity:0;transform:translateY(40px) scale(0.95)} to{opacity:1;transform:translateY(0) scale(1)} }
+  .restaurant-logo { font-family:'Playfair Display',serif; font-size:1rem; font-weight:700; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:2rem; opacity:0.8; }
+  .line-deco { width:80px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:0 auto 1.5rem; }
+  .gift-icon { font-size:4rem; margin-bottom:1.5rem; animation:bounce 2s ease-in-out infinite; display:block; }
+  @keyframes bounce { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-10px) rotate(5deg)} }
+  h1 { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:900; color:var(--gold-light); line-height:1.2; margin-bottom:1rem; }
+  .card p { font-size:0.95rem; color:rgba(253,246,227,0.7); line-height:1.6; margin-bottom:2rem; }
+  .prizes-preview { display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap; margin-bottom:2rem; }
+  .prize-tag { background:rgba(201,168,76,0.15); border:1px solid rgba(201,168,76,0.3); border-radius:20px; padding:0.3rem 0.8rem; font-size:0.78rem; color:var(--gold-light); font-weight:500; }
+  .btn-primary { display:block; width:100%; padding:1rem 2rem; background:linear-gradient(135deg,var(--gold),var(--gold-dark)); color:var(--deep); font-family:'DM Sans',sans-serif; font-weight:700; font-size:1rem; letter-spacing:0.05em; border:none; border-radius:14px; cursor:pointer; transition:all 0.3s ease; box-shadow:0 8px 30px rgba(201,168,76,0.4); }
+  .btn-primary:active { transform:scale(0.98); }
 
-  .restaurant-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 2rem;
-    opacity: 0.8;
-  }
+  /* SCREEN GOOGLE */
+  .google-big-g { font-size:3.5rem; font-weight:900; background:linear-gradient(135deg,#4285f4,#ea4335,#fbbc05,#34a853); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:block; margin-bottom:1.2rem; }
+  .stars-row { font-size:2rem; letter-spacing:0.1em; margin-bottom:1.5rem; display:block; }
+  #screen-google h2 { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold-light); margin-bottom:0.75rem; }
+  #screen-google .card p { margin-bottom:1.5rem; }
+  .btn-google { display:flex; align-items:center; justify-content:center; gap:0.5rem; width:100%; padding:1rem 2rem; background:white; color:#333; font-family:'DM Sans',sans-serif; font-weight:700; font-size:1rem; border:none; border-radius:14px; cursor:pointer; margin-bottom:1rem; box-shadow:0 8px 30px rgba(255,255,255,0.15); transition:all 0.3s; letter-spacing:0.02em; }
+  .btn-google:active { transform:scale(0.98); }
+  .btn-google .g-letter { font-size:1.1rem; font-weight:900; background:linear-gradient(135deg,#4285f4,#ea4335,#fbbc05,#34a853); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .btn-skip { display:block; width:100%; padding:0.75rem; background:transparent; color:rgba(253,246,227,0.35); font-family:'DM Sans',sans-serif; font-size:0.85rem; border:none; cursor:pointer; transition:color 0.2s; }
 
-  .gift-icon {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    animation: bounce 2s ease-in-out infinite;
-    display: block;
+  /* état "ouverture en cours" */
+  .opening-state { display:none; margin-top:1.2rem; }
+  .opening-state.show { display:block; }
+  .opening-pill {
+    display:inline-flex; align-items:center; gap:0.5rem;
+    background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.25);
+    border-radius:30px; padding:0.55rem 1.1rem;
+    font-size:0.82rem; color:rgba(253,246,227,0.55);
+    margin-bottom:0.9rem;
   }
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-10px) rotate(5deg); }
-  }
+  .dot-pulse { width:8px; height:8px; border-radius:50%; background:var(--gold); animation:dotpulse 1.2s ease-in-out infinite; flex-shrink:0; }
+  @keyframes dotpulse { 0%,100%{opacity:0.3;transform:scale(0.8)} 50%{opacity:1;transform:scale(1.2)} }
+  .btn-manual { display:block; width:100%; padding:0.85rem; background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.3); color:var(--gold-light); font-family:'DM Sans',sans-serif; font-weight:600; font-size:0.9rem; border-radius:14px; cursor:pointer; transition:all 0.2s; }
+  .btn-manual:active { background:rgba(201,168,76,0.2); }
 
-  .card h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: var(--gold-light);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
+  /* ROUE */
+  #screen-wheel { padding:1.5rem; }
+  #screen-wheel h2 { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold-light); margin-bottom:0.5rem; animation:slideUp 0.6s both; }
+  #screen-wheel .subtitle { font-size:0.85rem; color:rgba(253,246,227,0.5); margin-bottom:1.5rem; animation:slideUp 0.6s 0.1s both; }
+  .wheel-container { position:relative; width:320px; height:320px; margin:0 auto; animation:slideUp 0.6s 0.2s both; }
+  .pointer { position:absolute; top:-18px; left:50%; transform:translateX(-50%); z-index:10; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.5)); }
+  .pointer svg { width:36px; height:36px; }
+  .wheel-outer { position:absolute; inset:-8px; border-radius:50%; background:conic-gradient(from 0deg,var(--gold),var(--gold-dark),var(--gold),var(--gold-dark),var(--gold)); box-shadow:0 0 40px rgba(201,168,76,0.4),0 0 80px rgba(201,168,76,0.1); }
+  canvas#wheel { position:relative; z-index:2; border-radius:50%; display:block; }
+  .wheel-center { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:10; width:64px; height:64px; border-radius:50%; background:linear-gradient(145deg,#fff8e7,#c9a84c); border:4px solid var(--deep); box-shadow:0 4px 20px rgba(0,0,0,0.5); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:0.65rem; font-weight:700; color:var(--deep); letter-spacing:0.05em; text-align:center; line-height:1.2; transition:transform 0.2s; padding:0.5rem; }
+  .wheel-center:active { transform:translate(-50%,-50%) scale(0.96); }
+  .spin-btn { display:block; width:100%; max-width:280px; margin:1.5rem auto 0; padding:1rem 2rem; background:linear-gradient(135deg,var(--gold),var(--gold-dark)); color:var(--deep); font-family:'DM Sans',sans-serif; font-weight:700; font-size:1.05rem; border:none; border-radius:14px; cursor:pointer; box-shadow:0 8px 30px rgba(201,168,76,0.4); transition:all 0.3s; animation:slideUp 0.6s 0.3s both; letter-spacing:0.05em; }
+  .spin-btn:disabled { opacity:0.5; cursor:not-allowed; }
 
-  .card p {
-    font-size: 0.95rem;
-    color: rgba(253,246,227,0.7);
-    line-height: 1.6;
-    margin-bottom: 2rem;
-  }
+  /* SCREEN DÉJÀ JOUÉ */
+  #screen-used .lock-icon { font-size:3.5rem; display:block; margin-bottom:1.5rem; }
+  #screen-used h2 { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold-light); margin-bottom:1rem; }
+  #screen-used p { font-size:0.9rem; color:rgba(253,246,227,0.6); line-height:1.7; margin-bottom:1.5rem; }
+  .countdown-box { background:rgba(201,168,76,0.08); border:1px solid rgba(201,168,76,0.25); border-radius:16px; padding:1.2rem 1.5rem; margin-bottom:2rem; }
+  .countdown-label { font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(253,246,227,0.4); margin-bottom:0.5rem; }
+  .countdown-time { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--gold); letter-spacing:0.05em; }
+  .prev-prize { background:rgba(201,168,76,0.06); border:1px dashed rgba(201,168,76,0.3); border-radius:12px; padding:0.9rem 1.2rem; margin-bottom:1.5rem; font-size:0.82rem; color:rgba(253,246,227,0.55); line-height:1.5; }
+  .prev-prize strong { display:block; font-size:1rem; color:var(--gold-light); margin-bottom:0.2rem; }
 
-  .prizes-preview {
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-  .prize-tag {
-    background: rgba(201,168,76,0.15);
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 20px;
-    padding: 0.3rem 0.8rem;
-    font-size: 0.78rem;
-    color: var(--gold-light);
-    font-weight: 500;
-  }
-
-  .btn-primary {
-    display: block;
-    width: 100%;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-    color: var(--deep);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-    border: none;
-    border-radius: 14px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 8px 30px rgba(201,168,76,0.4);
-    position: relative;
-    overflow: hidden;
-  }
-  .btn-primary::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.5); }
-  .btn-primary:hover::after { opacity: 1; }
-  .btn-primary:active { transform: translateY(0); }
-
-  /* ─── SCREEN 3: ROUE ─── */
-  #screen-wheel { padding: 1.5rem; }
-  #screen-wheel h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    color: var(--gold-light);
-    margin-bottom: 0.5rem;
-    animation: slideUp 0.6s both;
-  }
-  #screen-wheel .subtitle {
-    font-size: 0.85rem;
-    color: rgba(253,246,227,0.5);
-    margin-bottom: 1.5rem;
-    animation: slideUp 0.6s 0.1s both;
-  }
-
-  .wheel-container {
-    position: relative;
-    width: 320px; height: 320px;
-    margin: 0 auto;
-    animation: slideUp 0.6s 0.2s both;
-  }
-
-  .pointer {
-    position: absolute;
-    top: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
-  }
-  .pointer svg { width: 36px; height: 36px; }
-
-  .wheel-outer {
-    position: absolute;
-    inset: -8px;
-    border-radius: 50%;
-    background: conic-gradient(from 0deg, var(--gold), var(--gold-dark), var(--gold), var(--gold-dark), var(--gold));
-    box-shadow: 0 0 40px rgba(201,168,76,0.4), 0 0 80px rgba(201,168,76,0.1);
-  }
-
-  canvas#wheel {
-    position: relative;
-    z-index: 2;
-    border-radius: 50%;
-    display: block;
-  }
-
-  .wheel-center {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    background: linear-gradient(145deg, #fff8e7, #c9a84c);
-    border: 4px solid var(--deep);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.65rem;
-    font-weight: 700;
-    color: var(--deep);
-    letter-spacing: 0.05em;
-    text-align: center;
-    line-height: 1.2;
-    transition: transform 0.2s;
-    padding: 0.5rem;
-  }
-  .wheel-center:hover { transform: translate(-50%, -50%) scale(1.08); }
-  .wheel-center:active { transform: translate(-50%, -50%) scale(0.96); }
-
-  .spin-btn {
-    display: block;
-    width: 100%;
-    max-width: 280px;
-    margin: 1.5rem auto 0;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-    color: var(--deep);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 1.05rem;
-    border: none;
-    border-radius: 14px;
-    cursor: pointer;
-    box-shadow: 0 8px 30px rgba(201,168,76,0.4);
-    transition: all 0.3s;
-    animation: slideUp 0.6s 0.3s both;
-    letter-spacing: 0.05em;
-  }
-  .spin-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.5); }
-  .spin-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-
-  /* ─── SCREEN 4: ALREADY PLAYED ─── */
-  #screen-used .card {
-    background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    border: 1px solid rgba(201,168,76,0.2);
-    border-radius: 24px;
-    padding: 3rem 2.5rem;
-    max-width: 400px;
-    width: 100%;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
-    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-  #screen-used .lock-icon {
-    font-size: 3.5rem;
-    display: block;
-    margin-bottom: 1.5rem;
-  }
-  #screen-used h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    color: var(--gold-light);
-    margin-bottom: 1rem;
-  }
-  #screen-used p {
-    font-size: 0.9rem;
-    color: rgba(253,246,227,0.6);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-  .countdown-box {
-    background: rgba(201,168,76,0.08);
-    border: 1px solid rgba(201,168,76,0.25);
-    border-radius: 16px;
-    padding: 1.2rem 1.5rem;
-    margin-bottom: 2rem;
-  }
-  .countdown-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(253,246,227,0.4);
-    margin-bottom: 0.5rem;
-  }
-  .countdown-time {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 0.05em;
-  }
-  .prev-prize {
-    background: rgba(201,168,76,0.06);
-    border: 1px dashed rgba(201,168,76,0.3);
-    border-radius: 12px;
-    padding: 0.9rem 1.2rem;
-    margin-bottom: 1.5rem;
-    font-size: 0.82rem;
-    color: rgba(253,246,227,0.55);
-    line-height: 1.5;
-  }
-  .prev-prize strong {
-    display: block;
-    font-size: 1rem;
-    color: var(--gold-light);
-    margin-bottom: 0.2rem;
-  }
-
-  /* ─── MODAL ─── */
-  .modal-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    backdrop-filter: blur(6px);
-    overflow-y: auto;
-  }
-  .modal-overlay.show { display: flex; }
-  .modal {
-    background: linear-gradient(145deg, #1e0e00, #2a1500);
-    border: 1px solid rgba(201,168,76,0.4);
-    border-radius: 24px;
-    padding: 2.5rem 2rem;
-    max-width: 360px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 60px rgba(201,168,76,0.1);
-    animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-  }
-  @keyframes popIn {
-    from { opacity: 0; transform: scale(0.5) rotate(-5deg); }
-    to   { opacity: 1; transform: scale(1) rotate(0deg); }
-  }
-  .confetti-emoji {
-    font-size: 3.5rem;
-    display: block;
-    margin-bottom: 1rem;
-    animation: tada 0.8s 0.3s both;
-  }
-  @keyframes tada {
-    0%   { transform: scale(0) rotate(-20deg); }
-    60%  { transform: scale(1.2) rotate(5deg); }
-    80%  { transform: scale(0.95) rotate(-3deg); }
-    100% { transform: scale(1) rotate(0deg); }
-  }
-  .modal h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    color: rgba(253,246,227,0.6);
-    margin-bottom: 0.5rem;
-  }
-  .modal .prize-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--gold-light);
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-  .modal .prize-desc {
-    font-size: 0.88rem;
-    color: rgba(253,246,227,0.5);
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
-  }
-  .coupon-box {
-    background: rgba(201,168,76,0.1);
-    border: 1px dashed var(--gold);
-    border-radius: 12px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    font-size: 0.82rem;
-    color: rgba(253,246,227,0.6);
-  }
-  .coupon-code {
-    font-family: monospace;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 0.2em;
-    display: block;
-    margin-top: 0.3rem;
-  }
-  .modal .btn-primary { max-width: none; }
-
-  /* ─── GOOGLE REVIEW NUDGE (in modal) ─── */
-  .review-nudge {
-    background: linear-gradient(135deg, rgba(66,133,244,0.08), rgba(52,168,83,0.08));
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 14px;
-    padding: 1rem 1.2rem;
-    margin-bottom: 1.5rem;
-    text-align: left;
-    position: relative;
-    overflow: hidden;
-  }
-  .review-nudge::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: linear-gradient(180deg, #4285f4, #34a853, #fbbc05, #ea4335);
-    border-radius: 3px 0 0 3px;
-  }
-  .review-nudge-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-  .review-nudge-header .google-g {
-    font-size: 1.1rem;
-    font-weight: 900;
-    background: linear-gradient(135deg, #4285f4, #ea4335, #fbbc05, #34a853);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .review-nudge-title {
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: rgba(253,246,227,0.85);
-  }
-  .review-nudge-body {
-    font-size: 0.78rem;
-    color: rgba(253,246,227,0.5);
-    line-height: 1.5;
-    margin-bottom: 0.75rem;
-  }
-  .review-nudge-body strong {
-    color: var(--gold-light);
-    font-weight: 700;
-  }
-  .review-nudge-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    width: 100%;
-    padding: 0.55rem 1rem;
-    background: white;
-    color: #333;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 600;
-    font-size: 0.82rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  }
-  .review-nudge-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(255,255,255,0.15);
-  }
-
-  .line-deco {
-    width: 80px; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 0 auto 1.5rem;
-  }
-
-  /* Lost modal close btn */
-  .btn-close-dark {
-    display: block;
-    width: 100%;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, #3a3a3a, #1a1a1a);
-    color: rgba(253,246,227,0.7);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    border: none;
-    border-radius: 14px;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: none;
-  }
-  .btn-close-dark:hover { opacity: 0.8; }
+  /* MODALS */
+  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:100; align-items:center; justify-content:center; padding:2rem; backdrop-filter:blur(6px); overflow-y:auto; }
+  .modal-overlay.show { display:flex; }
+  .modal { background:linear-gradient(145deg,#1e0e00,#2a1500); border:1px solid rgba(201,168,76,0.4); border-radius:24px; padding:2.5rem 2rem; max-width:360px; width:100%; text-align:center; box-shadow:0 40px 80px rgba(0,0,0,0.8); animation:popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both; }
+  @keyframes popIn { from{opacity:0;transform:scale(0.5) rotate(-5deg)} to{opacity:1;transform:scale(1) rotate(0deg)} }
+  .confetti-emoji { font-size:3.5rem; display:block; margin-bottom:1rem; animation:tada 0.8s 0.3s both; }
+  @keyframes tada { 0%{transform:scale(0) rotate(-20deg)} 60%{transform:scale(1.2) rotate(5deg)} 80%{transform:scale(0.95) rotate(-3deg)} 100%{transform:scale(1) rotate(0deg)} }
+  .modal h3 { font-family:'Playfair Display',serif; font-size:1.3rem; color:rgba(253,246,227,0.6); margin-bottom:0.5rem; }
+  .prize-name { font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; color:var(--gold-light); line-height:1.2; margin-bottom:1rem; }
+  .prize-desc { font-size:0.88rem; color:rgba(253,246,227,0.5); margin-bottom:1.5rem; line-height:1.5; }
+  .coupon-box { background:rgba(201,168,76,0.1); border:1px dashed var(--gold); border-radius:12px; padding:1rem; margin-bottom:1.5rem; font-size:0.82rem; color:rgba(253,246,227,0.6); }
+  .coupon-code { font-family:monospace; font-size:1.2rem; font-weight:700; color:var(--gold); letter-spacing:0.2em; display:block; margin-top:0.3rem; }
+  .btn-close-dark { display:block; width:100%; padding:1rem 2rem; background:linear-gradient(135deg,#3a3a3a,#1a1a1a); color:rgba(253,246,227,0.7); font-family:'DM Sans',sans-serif; font-weight:700; font-size:1rem; border:none; border-radius:14px; cursor:pointer; }
 </style>
 </head>
 <body>
 
 <div class="particles" id="particles"></div>
 
-<!-- SCREEN 1: INTRO -->
+<!-- SCREEN 1 : INTRO -->
 <div class="screen active" id="screen-review">
   <div class="card">
     <div class="restaurant-logo">🍽 Le Gourmet</div>
@@ -514,36 +112,50 @@
     <span class="gift-icon">🎁</span>
     <h1>Un cadeau vous attend !</h1>
     <p>Tentez votre chance sur notre <strong>Roue des Saveurs</strong> et repartez peut-être avec une récompense exclusive.</p>
-
     <div class="prizes-preview">
       <span class="prize-tag">🍰 Dessert offert</span>
       <span class="prize-tag">🍷 Boisson offerte</span>
       <span class="prize-tag">☕ Café offert</span>
       <span class="prize-tag">🎉 -10% sur l'addition</span>
     </div>
-
-    <button class="btn-primary" onclick="goToWheel()">
-      🎡 Tourner la roue !
-    </button>
+    <button class="btn-primary" onclick="goToGoogleReview()">🎡 Tourner la roue !</button>
   </div>
 </div>
 
-<!-- SCREEN 3: ROUE -->
+<!-- SCREEN AVIS GOOGLE -->
+<div class="screen" id="screen-google">
+  <div class="card">
+    <div class="restaurant-logo">🍽 Le Gourmet</div>
+    <div class="line-deco"></div>
+    <span class="google-big-g">G</span>
+    <span class="stars-row">⭐⭐⭐⭐⭐</span>
+    <h2>Un petit avis avant de jouer ?</h2>
+    <p>Votre avis nous aide énormément et permet à d'autres gourmets de nous découvrir. Cela ne prend que 30 secondes !</p>
+    <button class="btn-google" id="btnGoogle" onclick="openGoogleReview()">
+      <span class="g-letter">G</span>
+      Laisser un avis Google
+    </button>
+    <div class="opening-state" id="openingState">
+      <div class="opening-pill">
+        <div class="dot-pulse"></div>
+        Google Maps ouvert… revenez ici après votre avis
+      </div>
+      <button class="btn-manual" onclick="goToWheel()">✅ J'ai laissé mon avis, jouer !</button>
+    </div>
+    <button class="btn-skip" onclick="goToWheel()">Passer cette étape →</button>
+  </div>
+</div>
+
+<!-- SCREEN ROUE -->
 <div class="screen" id="screen-wheel">
   <h2>La Roue des Saveurs</h2>
   <p class="subtitle">Tournez la roue et découvrez votre récompense 🍀</p>
-
   <div class="wheel-container">
     <div class="pointer">
       <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 34 L6 8 Q18 2 30 8 Z" fill="#C9A84C"/>
-        <path d="M18 34 L6 8 Q18 2 30 8 Z" fill="url(#pg)" />
-        <defs>
-          <linearGradient id="pg" x1="6" y1="8" x2="30" y2="8" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#F0D080"/>
-            <stop offset="1" stop-color="#8B6914"/>
-          </linearGradient>
-        </defs>
+        <path d="M18 34 L6 8 Q18 2 30 8 Z" fill="url(#pg)"/>
+        <defs><linearGradient id="pg" x1="6" y1="8" x2="30" y2="8" gradientUnits="userSpaceOnUse"><stop stop-color="#F0D080"/><stop offset="1" stop-color="#8B6914"/></linearGradient></defs>
         <circle cx="18" cy="9" r="3" fill="#fff8e7"/>
       </svg>
     </div>
@@ -551,140 +163,113 @@
     <canvas id="wheel" width="320" height="320"></canvas>
     <div class="wheel-center" onclick="spinWheel()">TOURNER</div>
   </div>
-
-  <button class="spin-btn" id="spinBtn" onclick="spinWheel()">
-    🎡 Faire tourner la roue !
-  </button>
+  <button class="spin-btn" id="spinBtn" onclick="spinWheel()">🎡 Faire tourner la roue !</button>
 </div>
 
-<!-- SCREEN 4: DÉJÀ JOUÉ -->
+<!-- SCREEN DÉJÀ JOUÉ -->
 <div class="screen" id="screen-used">
   <div class="card">
     <span class="lock-icon">⏳</span>
     <h2>Votre chance reviendra bientôt</h2>
     <p>Vous avez déjà tourné la roue aujourd'hui. Revenez dans :</p>
-
     <div class="countdown-box">
       <div class="countdown-label">Prochaine tentative disponible dans</div>
       <div class="countdown-time" id="countdown">--:--:--</div>
     </div>
-
     <div class="prev-prize" id="prev-prize-box" style="display:none;">
       <strong id="prev-prize-label"></strong>
-      🎟 Code : <span id="prev-prize-code" style="font-family:monospace; color:var(--gold); font-weight:700;"></span>
+      🎟 Code : <span id="prev-prize-code" style="font-family:monospace;color:var(--gold);font-weight:700;"></span>
     </div>
-
-    <p style="font-size:0.8rem; color:rgba(253,246,227,0.3); margin-bottom:0;">
-      Une seule tentative toutes les 24h par appareil.
-    </p>
+    <p style="font-size:0.8rem;color:rgba(253,246,227,0.3);margin-bottom:0;">Une seule tentative toutes les 24h par appareil.</p>
   </div>
 </div>
 
-<!-- MODAL: PERDU -->
+<!-- MODAL PERDU -->
 <div class="modal-overlay" id="lostModal">
   <div class="modal">
     <span class="confetti-emoji" style="animation:none;">😔</span>
-    <h3 style="color:rgba(253,246,227,0.5); margin-bottom:0.75rem;">Pas de chance cette fois…</h3>
-    <p class="prize-desc" style="margin-bottom:1.2rem;">
-      Merci d'être passé chez nous !<br>
-      Revenez demain pour retenter votre chance.
-    </p>
-
-    <!-- Google Review nudge (lost) -->
-    <div class="review-nudge">
-      <div class="review-nudge-header">
-        <span class="google-g">G</span>
-        <span class="review-nudge-title">Boostez vos chances !</span>
-      </div>
-      <p class="review-nudge-body">
-        Laisser un avis Google augmente votre chance de gagner de <strong>+1%</strong> à votre prochaine tentative. Un petit geste qui peut tout changer&nbsp;🍀
-      </p>
-      <button class="review-nudge-btn" onclick="openGoogleReview()">
-        <span class="google-g">G</span>
-        Laisser un avis Google
-      </button>
-    </div>
-
-    <div style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:0.9rem 1.2rem; margin-bottom:1.8rem; font-size:0.82rem; color:rgba(253,246,227,0.35); line-height:1.6;">
+    <h3 style="color:rgba(253,246,227,0.5);margin-bottom:0.75rem;">Pas de chance cette fois…</h3>
+    <p class="prize-desc" style="margin-bottom:1.8rem;">Merci d'être passé chez nous !<br>Revenez demain pour retenter votre chance.</p>
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:0.9rem 1.2rem;margin-bottom:1.8rem;font-size:0.82rem;color:rgba(253,246,227,0.35);line-height:1.6;">
       Une nouvelle tentative sera disponible<br>dans <strong style="color:rgba(253,246,227,0.6);">24 heures</strong>.
     </div>
-    <button class="btn-close-dark" onclick="closeLostModal()">
-      Fermer
-    </button>
+    <button class="btn-close-dark" onclick="closeLostModal()">Fermer</button>
   </div>
 </div>
 
-<!-- MODAL: GAGNÉ -->
+<!-- MODAL GAGNÉ -->
 <div class="modal-overlay" id="prizeModal">
   <div class="modal">
     <span class="confetti-emoji" id="prizeEmoji">🎉</span>
     <h3>Félicitations !</h3>
     <div class="prize-name" id="prizeName">Dessert offert</div>
     <p class="prize-desc" id="prizeDesc">Présentez ce bon à votre serveur·euse avant de partir.</p>
-
     <div class="coupon-box">
       🎟 Votre bon cadeau
       <span class="coupon-code" id="prizeCode">SAVEUR-0000</span>
     </div>
-
-    <!-- Google Review nudge (won) -->
-    <div class="review-nudge" style="margin-bottom:1.5rem;">
-      <div class="review-nudge-header">
-        <span class="google-g">G</span>
-        <span class="review-nudge-title">Augmentez vos chances demain !</span>
-      </div>
-      <p class="review-nudge-body">
-        Un avis Google vous donne <strong>+1% de chance de gagner</strong> lors de votre prochaine visite. C'est rapide et ça nous aide beaucoup ❤️
-      </p>
-      <button class="review-nudge-btn" onclick="openGoogleReview()">
-        <span class="google-g">G</span>
-        Laisser un avis Google
-      </button>
-    </div>
-
-    <button class="btn-primary" onclick="closeModal()">
-      Fermer & montrer au serveur
-    </button>
+    <button class="btn-primary" onclick="closeModal()">Fermer & montrer au serveur</button>
   </div>
 </div>
 
 <script>
-// ─── CONFIG ───
 const STORAGE_KEY = 'roue_saveurs_spin';
 const COOLDOWN_MS = 24 * 60 * 60 * 1000;
-const GOOGLE_REVIEW_URL = "https://search.google.com/local/writereview?placeid=ChIJpSWiLADvBUgRoMKiZQL9a5o";
+const PLACE_ID = "ChIJpSWiLADvBUgRoMKiZQL9a5o";
 
 const prizes = [
-  { label: "Dessert\nOffert",   emoji: "🍰", color: "#8B1A1A",  desc: "Un dessert de votre choix offert par Le Gourmet !",         code: "DESSERT",  lost: false },
-  { label: "Boisson\nOfferte",  emoji: "🍷", color: "#1A2E5C",  desc: "Une boisson (soft ou verre de vin) offerte !",              code: "BOISSON",  lost: false },
-  { label: "Pas\nde chance",    emoji: "😔", color: "#2A2A2A",  desc: "",                                                          code: "",         lost: true  },
-  { label: "Café\nOffert",      emoji: "☕", color: "#3D2800",  desc: "Un café ou thé offert en fin de repas.",                   code: "CAFE",     lost: false },
-  { label: "-10%\nAddition",    emoji: "💫", color: "#5C1A4A",  desc: "10% de réduction sur votre addition de ce soir.",          code: "REMISE10", lost: false },
-  { label: "Pas\nde chance",    emoji: "😔", color: "#2A2A2A",  desc: "",                                                          code: "",         lost: true  }
+  { label:"Dessert\nOffert",  emoji:"🍰", color:"#8B1A1A", desc:"Un dessert de votre choix offert par Le Gourmet !", code:"DESSERT",  lost:false },
+  { label:"Boisson\nOfferte", emoji:"🍷", color:"#1A2E5C", desc:"Une boisson (soft ou verre de vin) offerte !",    code:"BOISSON",  lost:false },
+  { label:"Pas\nde chance",   emoji:"😔", color:"#2A2A2A", desc:"",                                                code:"",         lost:true  },
+  { label:"Café\nOffert",     emoji:"☕", color:"#3D2800", desc:"Un café ou thé offert en fin de repas.",          code:"CAFE",     lost:false },
+  { label:"-10%\nAddition",   emoji:"💫", color:"#5C1A4A", desc:"10% de réduction sur votre addition de ce soir.",code:"REMISE10", lost:false },
+  { label:"Pas\nde chance",   emoji:"😔", color:"#2A2A2A", desc:"",                                                code:"",         lost:true  }
 ];
 
-// ─── STORAGE HELPERS ───
-function getSpin() {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch { return null; }
-}
-function saveSpin(data) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
-}
-function hasPlayedToday() {
-  const spin = getSpin();
-  if (!spin) return false;
-  return (Date.now() - spin.timestamp) < COOLDOWN_MS;
-}
-function timeUntilNext() {
-  const spin = getSpin();
-  if (!spin) return 0;
-  return Math.max(0, COOLDOWN_MS - (Date.now() - spin.timestamp));
+function getSpin() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch { return null; } }
+function saveSpin(d) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); } catch {} }
+function hasPlayedToday() { const s=getSpin(); return s ? (Date.now()-s.timestamp)<COOLDOWN_MS : false; }
+function timeUntilNext() { const s=getSpin(); return s ? Math.max(0,COOLDOWN_MS-(Date.now()-s.timestamp)) : 0; }
+function showScreen(id) { document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+
+function goToGoogleReview() {
+  if (hasPlayedToday()) { showUsedScreen(); return; }
+  showScreen('screen-google');
 }
 
-// ─── NAVIGATION ───
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+// ── DEEP LINK MOBILE ──
+// iOS     : comgooglemaps:// ouvre l'app Maps → retour auto sur Safari à la fermeture
+// Android : intent:// ouvre l'app Maps → retour auto sur Chrome à la fermeture
+// Fallback: URL web dans un nouvel onglet + visibilitychange en filet de sécurité
+function openGoogleReview() {
+  const webUrl = "https://search.google.com/local/writereview?placeid=" + PLACE_ID;
+  const isIOS     = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  const isAndroid = /Android/.test(navigator.userAgent);
+
+  if (isIOS) {
+    window.location.href = "comgooglemaps://?action=reviewplace&placeid=" + PLACE_ID;
+    // Fallback si l'app Maps n'est pas installée
+    setTimeout(() => { window.open(webUrl, '_blank'); }, 1500);
+  } else if (isAndroid) {
+    window.location.href = "intent://maps.google.com/maps?action=viewreviews&placeid=" + PLACE_ID
+      + "#Intent;scheme=https;package=com.google.android.apps.maps;end";
+    setTimeout(() => { window.open(webUrl, '_blank'); }, 1500);
+  } else {
+    window.open(webUrl, '_blank');
+  }
+
+  // Affiche le message d'attente + bouton manuel
+  document.getElementById('openingState').classList.add('show');
+  document.getElementById('btnGoogle').style.opacity = '0.4';
+  document.getElementById('btnGoogle').style.pointerEvents = 'none';
+
+  // visibilitychange : déclenché quand l'utilisateur revient sur l'onglet/l'app
+  document.addEventListener('visibilitychange', function handler() {
+    if (document.visibilityState === 'visible') {
+      document.removeEventListener('visibilitychange', handler);
+      goToWheel();
+    }
+  });
 }
 
 function goToWheel() {
@@ -693,12 +278,6 @@ function goToWheel() {
   drawWheel();
 }
 
-// ─── GOOGLE REVIEW ───
-function openGoogleReview() {
-  window.open(GOOGLE_REVIEW_URL, '_blank');
-}
-
-// ─── SCREEN DÉJÀ JOUÉ ───
 function showUsedScreen() {
   showScreen('screen-used');
   const spin = getSpin();
@@ -717,141 +296,73 @@ function startCountdown() {
   if (countdownInterval) clearInterval(countdownInterval);
   function update() {
     const ms = timeUntilNext();
-    if (ms <= 0) {
-      document.getElementById('countdown').textContent = '00:00:00';
-      clearInterval(countdownInterval);
-      return;
-    }
-    const h = Math.floor(ms / 3600000);
-    const m = Math.floor((ms % 3600000) / 60000);
-    const s = Math.floor((ms % 60000) / 1000);
+    if (ms <= 0) { document.getElementById('countdown').textContent='00:00:00'; clearInterval(countdownInterval); return; }
+    const h=Math.floor(ms/3600000), m=Math.floor((ms%3600000)/60000), s=Math.floor((ms%60000)/1000);
     document.getElementById('countdown').textContent =
-      String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+      String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
   }
-  update();
-  countdownInterval = setInterval(update, 1000);
+  update(); countdownInterval = setInterval(update, 1000);
 }
 
-// ─── INIT ───
 window.addEventListener('DOMContentLoaded', () => {
-  createParticles();
-  drawWheel();
-  if (hasPlayedToday()) {
-    showUsedScreen();
-  }
+  createParticles(); drawWheel();
+  if (hasPlayedToday()) showUsedScreen();
 });
 
-// ─── CANVAS ───
+// ── CANVAS / ROUE ──
 const canvas = document.getElementById('wheel');
 const ctx = canvas.getContext('2d');
-const NUM = prizes.length;
-const ARC = (2 * Math.PI) / NUM;
-let currentAngle = 0;
-let spinning = false;
+const NUM = prizes.length, ARC = (2 * Math.PI) / NUM;
+let currentAngle = 0, spinning = false;
 
 function drawWheel(angle = 0) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   const cx = canvas.width / 2, cy = canvas.height / 2, r = cx - 4;
-
   for (let i = 0; i < NUM; i++) {
-    const start = angle + i * ARC;
-    const end   = start + ARC;
-    const p = prizes[i];
-
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.arc(cx, cy, r, start, end);
-    ctx.closePath();
-    ctx.fillStyle = p.color;
-    ctx.fill();
-
-    ctx.strokeStyle = 'rgba(201,168,76,0.4)';
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-
+    const start = angle + i * ARC, end = start + ARC, p = prizes[i];
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, r, start, end); ctx.closePath();
+    ctx.fillStyle = p.color; ctx.fill();
+    ctx.strokeStyle = 'rgba(201,168,76,0.4)'; ctx.lineWidth = 1.5; ctx.stroke();
     const mid = start + ARC / 2;
-    const tx = cx + (r * 0.62) * Math.cos(mid);
-    const ty = cy + (r * 0.62) * Math.sin(mid);
-
-    ctx.save();
-    ctx.translate(tx, ty);
-    ctx.rotate(mid + Math.PI / 2);
-
-    ctx.font = '20px serif';
-    ctx.textAlign = 'center';
-    ctx.fillText(p.emoji, 0, -14);
-
-    ctx.font = 'bold 10.5px "DM Sans", sans-serif';
-    ctx.fillStyle = '#FDF6E3';
-    ctx.shadowColor = 'rgba(0,0,0,0.8)';
-    ctx.shadowBlur = 4;
-    const lines = p.label.split('\n');
-    lines.forEach((line, li) => { ctx.fillText(line, 0, li * 13 + 3); });
+    const tx = cx + (r * 0.62) * Math.cos(mid), ty = cy + (r * 0.62) * Math.sin(mid);
+    ctx.save(); ctx.translate(tx, ty); ctx.rotate(mid + Math.PI / 2);
+    ctx.font = '20px serif'; ctx.textAlign = 'center'; ctx.fillText(p.emoji, 0, -14);
+    ctx.font = 'bold 10.5px "DM Sans",sans-serif'; ctx.fillStyle = '#FDF6E3';
+    ctx.shadowColor = 'rgba(0,0,0,0.8)'; ctx.shadowBlur = 4;
+    p.label.split('\n').forEach((l, li) => ctx.fillText(l, 0, li * 13 + 3));
     ctx.restore();
   }
-
   const grad = ctx.createRadialGradient(cx, cy, r * 0.5, cx, cy, r);
-  grad.addColorStop(0, 'transparent');
-  grad.addColorStop(1, 'rgba(0,0,0,0.15)');
-  ctx.beginPath();
-  ctx.arc(cx, cy, r, 0, 2 * Math.PI);
-  ctx.fillStyle = grad;
-  ctx.fill();
+  grad.addColorStop(0, 'transparent'); grad.addColorStop(1, 'rgba(0,0,0,0.15)');
+  ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI); ctx.fillStyle = grad; ctx.fill();
 }
 
-// ─── SPIN ───
 function spinWheel() {
   if (spinning) return;
   if (hasPlayedToday()) { showUsedScreen(); return; }
-
   spinning = true;
   const btn = document.getElementById('spinBtn');
-  btn.disabled = true;
-  btn.textContent = '🌀 En cours…';
+  btn.disabled = true; btn.textContent = '🌀 En cours…';
   document.querySelector('.wheel-center').style.pointerEvents = 'none';
-
   const extraSpins = (5 + Math.floor(Math.random() * 5)) * 2 * Math.PI;
-  const stopAt = Math.random() * 2 * Math.PI;
-  const totalAngle = extraSpins + stopAt;
-  const duration = 4500;
-  const start = performance.now();
-  const startAngle = currentAngle;
-
+  const totalAngle = extraSpins + Math.random() * 2 * Math.PI;
+  const duration = 4500, start = performance.now(), startAngle = currentAngle;
   function easeOut(t) { return 1 - Math.pow(1 - t, 4); }
-
   function frame(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
-    currentAngle = startAngle + totalAngle * easeOut(progress);
+    const p = Math.min((now - start) / duration, 1);
+    currentAngle = startAngle + totalAngle * easeOut(p);
     drawWheel(currentAngle);
-    if (progress < 1) {
-      requestAnimationFrame(frame);
-    } else {
-      currentAngle = startAngle + totalAngle;
-      spinning = false;
-      showResult();
-    }
+    if (p < 1) { requestAnimationFrame(frame); } else { spinning = false; showResult(); }
   }
-
   requestAnimationFrame(frame);
 }
 
 function showResult() {
-  const normalizedAngle = ((-currentAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
-  const pointerAngle = (normalizedAngle + Math.PI * 1.5) % (2 * Math.PI);
-  const idx = Math.floor(pointerAngle / ARC) % NUM;
-  const prize = prizes[idx];
-
+  const na = ((-currentAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+  const pa = (na + Math.PI * 1.5) % (2 * Math.PI);
+  const idx = Math.floor(pa / ARC) % NUM, prize = prizes[idx];
   const prizeCode = prize.lost ? '' : prize.code + '-' + Math.floor(Math.random() * 9000 + 1000);
-
-  saveSpin({
-    timestamp: Date.now(),
-    prizeLabel: prize.label.replace('\n', ' '),
-    prizeEmoji: prize.emoji,
-    prizeCode: prizeCode,
-    lost: prize.lost
-  });
-
+  saveSpin({ timestamp: Date.now(), prizeLabel: prize.label.replace('\n', ' '), prizeEmoji: prize.emoji, prizeCode, lost: prize.lost });
   if (prize.lost) {
     document.getElementById('lostModal').classList.add('show');
   } else {
@@ -864,62 +375,31 @@ function showResult() {
   }
 }
 
-function closeModal() {
-  document.getElementById('prizeModal').classList.remove('show');
-  showUsedScreen();
-}
+function closeModal() { document.getElementById('prizeModal').classList.remove('show'); showUsedScreen(); }
+function closeLostModal() { document.getElementById('lostModal').classList.remove('show'); showUsedScreen(); }
 
-function closeLostModal() {
-  document.getElementById('lostModal').classList.remove('show');
-  showUsedScreen();
-}
-
-// ─── CONFETTI ───
 function launchConfetti() {
   const colors = ['#C9A84C','#F0D080','#fff','#FF6B6B','#4ECDC4','#A8E6CF'];
   for (let i = 0; i < 60; i++) {
-    const div = document.createElement('div');
-    div.style.cssText = `
-      position:fixed;
-      width:${4 + Math.random() * 6}px;
-      height:${4 + Math.random() * 6}px;
-      background:${colors[Math.floor(Math.random()*colors.length)]};
-      left:${Math.random()*100}vw;
-      top:${Math.random()*50 + 30}vh;
-      border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
-      z-index:200;
-      pointer-events:none;
-      animation:conf ${1.5 + Math.random()*2}s ease-out forwards;
-      animation-delay:${Math.random()*0.5}s;
-    `;
-    document.body.appendChild(div);
-    setTimeout(() => div.remove(), 3500);
+    const d = document.createElement('div');
+    d.style.cssText = `position:fixed;width:${4+Math.random()*6}px;height:${4+Math.random()*6}px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*100}vw;top:${Math.random()*50+30}vh;border-radius:${Math.random()>.5?'50%':'2px'};z-index:200;pointer-events:none;animation:conf ${1.5+Math.random()*2}s ease-out forwards;animation-delay:${Math.random()*.5}s;`;
+    document.body.appendChild(d); setTimeout(() => d.remove(), 3500);
   }
 }
 
-// ─── PARTICLES ───
 function createParticles() {
-  const container = document.getElementById('particles');
+  const c = document.getElementById('particles');
   for (let i = 0; i < 30; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.cssText = `
-      left: ${Math.random() * 100}%;
-      width: ${1 + Math.random() * 3}px;
-      height: ${1 + Math.random() * 3}px;
-      animation-duration: ${8 + Math.random() * 12}s;
-      animation-delay: ${Math.random() * 10}s;
-    `;
-    container.appendChild(p);
+    const p = document.createElement('div'); p.className = 'particle';
+    p.style.cssText = `left:${Math.random()*100}%;width:${1+Math.random()*3}px;height:${1+Math.random()*3}px;animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*10}s;`;
+    c.appendChild(p);
   }
 }
 
-const styleEl = document.createElement('style');
-styleEl.textContent = `@keyframes conf { 0% { transform:translateY(0) rotate(0deg); opacity:1; } 100% { transform:translateY(-80vh) rotate(720deg); opacity:0; } }`;
-document.head.appendChild(styleEl);
-
-createParticles();
-drawWheel();
+const s = document.createElement('style');
+s.textContent = `@keyframes conf{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(-80vh) rotate(720deg);opacity:0}}`;
+document.head.appendChild(s);
+createParticles(); drawWheel();
 </script>
 </body>
 </html>
