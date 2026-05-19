@@ -215,7 +215,7 @@
 <script>
 const STORAGE_KEY = 'roue_saveurs_spin';
 const COOLDOWN_MS = 24 * 60 * 60 * 1000;
-const PLACE_ID = "ChIJpSWiLADvBUgRoMKiZQL9a5o"; // non utilisé si CID est renseigné
+const PLACE_ID = "ChIJpSWiLADvBUgRoMKiZQL9a5o";
 
 const prizes = [
   { label:"Dessert\nOffert",  emoji:"🍰", color:"#8B1A1A", desc:"Un dessert de votre choix offert par Le Gourmet !", code:"DESSERT",  lost:false },
@@ -237,34 +237,38 @@ function goToGoogleReview() {
   showScreen('screen-google');
 }
 
-// ── DEEP LINK MOBILE ──
-// L'URL maps.google.com/?cid= est reconnue par iOS Safari et Android Chrome :
-// elle ouvre l'app Google Maps directement sur la fiche du restaurant.
-// Le client n'a plus qu'à appuyer sur "Donner un avis" dans l'app.
-// À la fermeture de Maps, le navigateur revient en premier plan → visibilitychange déclenche la roue.
-//
-// ⚠️  Remplace CID par le CID numérique de ton établissement (différent du place_id).
-//     Pour le trouver : cherche ton resto sur maps.google.com → dans l'URL tu verras "cid=XXXXXXXXX"
-//     ou utilise : https://developers.google.com/maps/documentation/places/web-service/place-id
-const CID = "11127265491085869728"; // Capadocia Restaurant
-
 function openGoogleReview() {
-  // URL universelle : ouvre l'app Maps sur la fiche du resto sur iOS et Android
-  // puis le client tape "Donner un avis" dans l'app
-  const mapsAppUrl = "https://maps.google.com/?cid=" + CID;
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const isAndroid = /Android/i.test(navigator.userAgent);
 
-  // Fallback si CID non renseigné : page d'avis web directe
-  const webFallback = "https://search.google.com/local/writereview?placeid=" + PLACE_ID;
+  // URL web universelle : ouvre directement le formulaire de rédaction d'avis
+  const webUrl = "https://search.google.com/local/writereview?placeid=" + PLACE_ID;
 
-  const url = CID ? mapsAppUrl : webFallback;
-  window.location.href = url;
+  if (isIOS) {
+    // Tente d'ouvrir l'app Google Maps directement sur la page d'avis
+    // Si Maps n'est pas installé, le fallback web se déclenche après 1,5s
+    const appUrl = "comgooglemaps://?action=rate&placeid=" + PLACE_ID;
+    window.location.href = appUrl;
+    setTimeout(function() {
+      // Si on est toujours là, Maps n'est pas installé → fallback navigateur
+      if (!document.hidden) window.location.href = webUrl;
+    }, 1500);
+  } else if (isAndroid) {
+    // Intent Android : ouvre Maps si installé, sinon fallback web automatique
+    const intentUrl = "intent://maps.google.com/maps?action=rate&placeid=" + PLACE_ID
+      + "#Intent;scheme=https;package=com.google.android.apps.maps;end";
+    window.location.href = intentUrl;
+  } else {
+    // Desktop : formulaire web direct
+    window.open(webUrl, '_blank');
+  }
 
   // Affiche le message d'attente + bouton manuel
   document.getElementById('openingState').classList.add('show');
   document.getElementById('btnGoogle').style.opacity = '0.4';
   document.getElementById('btnGoogle').style.pointerEvents = 'none';
 
-  // visibilitychange : déclenché quand l'utilisateur revient sur l'onglet/l'app
+  // Quand l'utilisateur revient sur l'onglet/l'app après avoir laissé son avis
   document.addEventListener('visibilitychange', function handler() {
     if (document.visibilityState === 'visible') {
       document.removeEventListener('visibilitychange', handler);
