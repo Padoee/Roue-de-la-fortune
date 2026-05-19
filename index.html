@@ -238,30 +238,8 @@ function goToGoogleReview() {
 }
 
 function openGoogleReview() {
-  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-  const isAndroid = /Android/i.test(navigator.userAgent);
-
-  // URL web universelle : ouvre directement le formulaire de rédaction d'avis
   const webUrl = "https://search.google.com/local/writereview?placeid=" + PLACE_ID;
-
-  if (isIOS) {
-    // Tente d'ouvrir l'app Google Maps directement sur la page d'avis
-    // Si Maps n'est pas installé, le fallback web se déclenche après 1,5s
-    const appUrl = "comgooglemaps://?action=rate&placeid=" + PLACE_ID;
-    window.location.href = appUrl;
-    setTimeout(function() {
-      // Si on est toujours là, Maps n'est pas installé → fallback navigateur
-      if (!document.hidden) window.location.href = webUrl;
-    }, 1500);
-  } else if (isAndroid) {
-    // Intent Android : ouvre Maps si installé, sinon fallback web automatique
-    const intentUrl = "intent://maps.google.com/maps?action=rate&placeid=" + PLACE_ID
-      + "#Intent;scheme=https;package=com.google.android.apps.maps;end";
-    window.location.href = intentUrl;
-  } else {
-    // Desktop : formulaire web direct
-    window.open(webUrl, '_blank');
-  }
+  window.open(webUrl, '_blank');
 
   // Affiche le message d'attente + bouton manuel
   document.getElementById('openingState').classList.add('show');
